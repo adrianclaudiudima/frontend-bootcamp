@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "endava-fb"
+    }
+  },
+  "defaultProject": "endava-fb",
+  "cli": {
+    "analytics": false
+  }
 }

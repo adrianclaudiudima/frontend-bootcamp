@@ -1,0 +1,15 @@
+<div class="product-list">
+  <div
+    ngClass.xs="product-list-xs"
+    ngClass.sm="product-list-sm"
+    ngClass.md="product-list-md"
+    ngClass.lg="product-list-lg"
+    ngClass.xl="product-list-lg"
+    fxLayout="row wrap">
+    <div class="product-list__container__item" *ngFor="let productTemplateRef of products">
+      <app-product-item (productAddedToFavorite)="handleProductAddedToFavorite($event)" [product]="productTemplateRef"></app-product-item>
+    </div>
+  </div>
+</div>
+
+

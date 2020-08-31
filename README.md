@@ -1,10 +1,13 @@
-# EndavaFb
+# Shop Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+The scope of this project is to go through the basics of Angular. Its scope is to go through the main chapters of angular (components, directives, pipes, routing, modules, services, guards, etc) via examples.   
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Backend mock server
+Run `json-server --watch db.json` in order to have a mock rest API. 
 
 ## Code scaffolding
 

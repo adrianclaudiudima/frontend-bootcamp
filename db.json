@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "First product",
+      "image": "https://picsum.photos/800/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+      "price": 300
+    },
+    {
+      "id": 2,
+      "title": "Second Product",
+      "image": "https://picsum.photos/801/1000",
+      "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+      "price": 200
+    },
+    {
+      "id": 3,
+      "title": "Third Product",
+      "image": "https://picsum.photos/802/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloribus eius eveniet fugiat illum nesciunt, numquam perferendis quia, quibusdam quo quos sed sint,",
+      "price": 150
+    },
+    {
+      "id": 4,
+      "title": "Forth Product",
+      "image": "https://picsum.photos/803/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores blanditiis eos, id pariatur quod repellat unde veritatis vitae.",
+      "price": 150
+    },
+    {
+      "id": 5,
+      "title": "Fifth Product",
+      "image": "https://picsum.photos/804/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias delectus deleniti, ipsam nam quae voluptates voluptatum.",
+      "price": 200
+    },
+    {
+      "id": 6,
+      "title": "Sixth product",
+      "image": "https://picsum.photos/805/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+      "price": 220
+    },
+    {
+      "id": 7,
+      "title": "Seventh Product",
+      "image": "https://picsum.photos/806/1000",
+      "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+      "price": 190
+    },
+    {
+      "id": 8,
+      "title": "Eighth Product",
+      "image": "https://picsum.photos/807/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloribus eius eveniet fugiat illum nesciunt, numquam perferendis quia, quibusdam quo quos sed sint,",
+      "price": 320
+    },
+    {
+      "id": 9,
+      "title": "Ninth Product",
+      "image": "https://picsum.photos/808/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores blanditiis eos, id pariatur quod repellat unde veritatis vitae.",
+      "price": 280
+    },
+    {
+      "id": 10,
+      "title": "Tenth Product",
+      "image": "https://picsum.photos/809/1000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias delectus deleniti, ipsam nam quae voluptates voluptatum.",
+      "price": 330
+    }
+  ]
+}
