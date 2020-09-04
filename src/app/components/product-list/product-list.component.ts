@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
+import {ProductsService} from '../../services/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,21 +9,16 @@ import {Product} from '../../model/product';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
-  private httpClient: HttpClient;
-
   products: Array<Product> = [];
   productsFavorite: Array<Product> = [];
 
-  constructor(httpClient: HttpClient) {
-    this.httpClient = httpClient;
+  constructor(private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
-    this.httpClient.get<Array<Product>>('http://localhost:3000/products').subscribe(
-      value => {
-        this.products = value;
-      }
-    );
+    this.productsService.loadProducts().subscribe(v => {
+      this.products = v;
+    });
 
   }
 

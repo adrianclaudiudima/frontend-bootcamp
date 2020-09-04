@@ -1,0 +1,32 @@
+<div class="product-administration">
+
+  <ng-container *ngFor="let product of products ">
+    <div class="product-administration__row"
+         appHover
+         [borderRadius]="'6px'"
+         [backgroundColor]="'#f6f6f6'"
+         fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: 10px">
+      <div class="background-image product-administration__row__avatar" [ngStyle]="{'background-image':'url('+product.image+')'}"></div>
+      <div class="product-administration__details">
+        <div class="mat-title">{{product.title}}</div>
+        <div class="mat-body-1">{{product.description}}</div>
+        <div fxLayout="row" fxLayoutGap="10px" class="product-administration__row__actions">
+          <button mat-stroked-button color="accent" fxLayout="row">
+            <mat-icon>edit</mat-icon>
+            <span>EDIT</span>
+          </button>
+          <button mat-button color="primary">REMOVE</button>
+        </div>
+
+      </div>
+      <div>
+
+      </div>
+    </div>
+
+
+  </ng-container>
+
+</div>
+
+

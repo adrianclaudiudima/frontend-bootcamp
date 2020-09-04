@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-prod": "ng serve --prod",
     "fake-rest": "json-server --watch db.json",
     "build": "ng build",
     "test": "ng test",
