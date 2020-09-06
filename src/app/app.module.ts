@@ -16,6 +16,8 @@ import {ProductsService, ProductsServiceImpl, ProductsServiceLogger} from './ser
 import {environment} from '../environments/environment';
 import {FavoriteService} from './services/favorite.service';
 import {CartService} from './services/cart.service';
+import {ObservablesComponent} from './components/observables/observables.component';
+import {ProductFavoriteDetailsComponent} from './components/product-favorite-details/product-favorite-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import {CartService} from './services/cart.service';
     ProductListComponent,
     ProductItemComponent,
     ProductAdministrationComponent,
+    ObservablesComponent,
+    ProductFavoriteDetailsComponent,
     HoverDirective
   ],
   imports: [

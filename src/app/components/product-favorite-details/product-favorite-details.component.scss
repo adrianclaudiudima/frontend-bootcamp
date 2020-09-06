@@ -1,0 +1,25 @@
+.product-favorite {
+
+  &__list {
+
+    &__row {
+      padding: 8px;
+      margin-bottom: 10px;
+
+      &__avatar {
+        border-radius: 8px;
+        height: 140px;
+        width: 140px;
+      }
+
+      &__product-description {
+        margin-left: 10px;
+
+        &__actions {
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+}

@@ -10,7 +10,11 @@
   <span class="toolbar__spacer"></span>
 
   <div class="toolbar__actions" fxLayout="row" fxLayoutGap="10px">
-    <button mat-icon-button aria-label="Favorite information">
+    <button
+      [matBadge]="favoriteCount"
+      matBadgeColor="accent"
+      mat-icon-button
+      aria-label="Favorite information">
       <mat-icon>favorite</mat-icon>
     </button>
     <button mat-icon-button aria-label="Cart information">

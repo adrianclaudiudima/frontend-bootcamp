@@ -1,6 +1,11 @@
 <div class="product-item mat-elevation-z2" appHover>
-  <button (click)="addProductToFavorite()" class="product-item__favorite" color="primary" mat-mini-fab matTooltip="Add product to favorite">
-    <mat-icon>favorite_border</mat-icon>
+  <button
+    (click)="!isAtFavorite ? addProductToFavorite() : removeProductFromFavorite()"
+    class="product-item__favorite"
+    color="primary"
+    mat-mini-fab
+    [matTooltip]="isAtFavorite ? 'Remove from favorite':'Add product to favorite'">
+    <mat-icon>{{isAtFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
   </button>
 
   <div class="product-item__image background-image" [ngStyle]="{'background-image':'url('+product.image+');'}"></div>

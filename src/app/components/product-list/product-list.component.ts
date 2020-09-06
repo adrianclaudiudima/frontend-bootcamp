@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
 import {ProductsService} from '../../services/products.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +11,8 @@ import {ProductsService} from '../../services/products.service';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
+  s = new Subject();
+  showProductFavorite = false;
   products: Array<Product> = [];
   productsFavorite: Array<Product> = [];
 
@@ -16,7 +20,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.productsService.loadProducts().subscribe(v => {
+    this.productsService.loadProducts().pipe(
+      takeUntil(this.s),
+    ).subscribe(v => {
       this.products = v;
     });
 
@@ -28,6 +34,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log('On destroy from product list');
+    this.s.next();
+    this.s.complete();
   }
 
 }

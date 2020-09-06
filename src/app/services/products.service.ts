@@ -10,6 +10,8 @@ const serviceHostUrl = 'http://localhost:3000';
 
 export abstract class ProductsService {
   public abstract loadProducts(): Observable<Array<Product>>;
+
+  public abstract loadProductById(id: number): Observable<Product>;
 }
 
 
@@ -25,6 +27,12 @@ export class ProductsServiceImpl extends ProductsService {
   public loadProducts(): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(`${this.hostUrl}/products`);
   }
+
+  loadProductById(id: number): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.hostUrl}/products/${id}`);
+  }
+
+
 }
 
 @Injectable()
@@ -34,6 +42,10 @@ export class ProductsServiceLogger extends ProductsService {
 
   constructor(private httpClient: HttpClient, private favoriteService: FavoriteService, private cartService: CartService) {
     super();
+  }
+
+  loadProductById(id: number): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.hostUrl}/products/${id}`);
   }
 
   loadProducts(): Observable<Array<Product>> {

@@ -1,4 +1,14 @@
 <div class="product-list">
+
+  <div style="padding-left: 20px;padding-right: 20px;">
+    <ng-container *ngIf="!showProductFavorite">
+      <app-favorite-details></app-favorite-details>
+    </ng-container>
+  </div>
+
+
+  <button mat-raised-button color="primary" (click)="showProductFavorite = !showProductFavorite"> SHOW / HIDE FAVORITE DETAILS</button>
+
   <div
     ngClass.xs="product-list-xs"
     ngClass.sm="product-list-sm"
