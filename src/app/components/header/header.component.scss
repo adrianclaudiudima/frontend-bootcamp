@@ -1,6 +1,11 @@
 .toolbar {
   height: 64px;
 
+  .class-when-product-administration-is-active {
+    color: #ff8e6e;
+    font-weight: 600;
+  }
+
   &__title {
     height: 40px;
 

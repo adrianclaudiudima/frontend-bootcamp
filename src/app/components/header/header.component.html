@@ -2,15 +2,31 @@
              fxLayout="row"
              fxLayoutAlign="start center">
 
-  <div class="toolbar__title" fxLayout="row" fxLayoutAlign="start center">
+  <div class="toolbar__title" fxLayout="row" fxLayoutAlign="start center" routerLink="/" style="cursor: pointer">
     <mat-icon>store</mat-icon>
     <div>EShop</div>
   </div>
 
   <span class="toolbar__spacer"></span>
 
+
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="userLoggedIn | async as user else logout">
+      <button mat-menu-item
+              routerLink="product-administration"
+              routerLinkActive="class-when-product-administration-is-active">Product Administration
+      </button>
+      <button mat-menu-item (click)="doLogout()">Logout</button>
+    </ng-container>
+    <ng-template #logout>
+      <button mat-menu-item (click)="doLogin()">Login</button>
+    </ng-template>
+  </mat-menu>
+
+
   <div class="toolbar__actions" fxLayout="row" fxLayoutGap="10px">
     <button
+      routerLink="favorites"
       [matBadge]="favoriteCount"
       matBadgeColor="accent"
       mat-icon-button
@@ -19,6 +35,9 @@
     </button>
     <button mat-icon-button aria-label="Cart information">
       <mat-icon>shopping_basket</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
   </div>
 </mat-toolbar>

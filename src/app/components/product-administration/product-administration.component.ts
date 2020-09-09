@@ -10,16 +10,16 @@ import {FavoriteService} from '../../services/favorite.service';
 })
 export class ProductAdministrationComponent implements OnInit {
 
-  products: Array<Product> = [];
+  canLeave = false;
+
+
 
   constructor(private productsService: ProductsService, private favoriteService: FavoriteService) {
     console.log(favoriteService.getSomething());
   }
 
   ngOnInit(): void {
-    this.productsService.loadProducts().subscribe(products => {
-      this.products = products;
-    });
+
   }
 
 }

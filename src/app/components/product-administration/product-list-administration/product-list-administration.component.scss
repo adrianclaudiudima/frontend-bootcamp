@@ -1,0 +1,36 @@
+.product-administration-list {
+  padding: 30px;
+  margin-bottom: 200px;
+
+
+  &__row {
+    padding: 10px;
+
+    &__avatar {
+      margin-right: 20px;
+      height: 120px;
+      width: 120px;
+      min-width: 120px;
+      border-radius: 6px;
+    }
+
+    &__actions {
+      margin-top: 10px;
+
+      button {
+        mat-icon {
+          font-size: 16px;
+          width: 18px;
+          height: 18px;
+          margin-right: 4px;
+        }
+
+        span {
+          margin-right: 5px;;
+        }
+      }
+    }
+  }
+
+}
+

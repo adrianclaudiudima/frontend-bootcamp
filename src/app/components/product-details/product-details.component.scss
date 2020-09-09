@@ -1,0 +1,44 @@
+.product-details {
+
+  &-xs {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    & .product-details__avatar {
+      padding-top: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  &-sm {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    & .product-details__avatar {
+      padding-top: 60%;
+      margin-bottom: 10px;
+    }
+  }
+
+  &-md {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    & .product-details__avatar {
+      padding-top: 40%;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__avatar {
+    border-radius: 8px;
+  }
+
+  &__actions {
+    margin-top: 20px;
+  }
+
+}

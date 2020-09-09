@@ -39,6 +39,7 @@ export class ProductsServiceImpl extends ProductsService {
 export class ProductsServiceLogger extends ProductsService {
 
   hostUrl = serviceHostUrl;
+  selectedProduct: Product;
 
   constructor(private httpClient: HttpClient, private favoriteService: FavoriteService, private cartService: CartService) {
     super();

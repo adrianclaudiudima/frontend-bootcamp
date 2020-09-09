@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
-import {ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class FavoriteService {
@@ -31,5 +32,13 @@ export class FavoriteService {
   setProducts(products: Product[]): void {
     this.favoriteProducts = products;
     this.favoriteSubject.next(this.favoriteProducts);
+  }
+
+  isProductAtFavorite(productId): Observable<boolean> {
+    return this.favoriteProducts$.pipe(
+      map(allFavoriteProducts => {
+        return !!allFavoriteProducts.find(pf => pf.id === productId);
+      })
+    );
   }
 }

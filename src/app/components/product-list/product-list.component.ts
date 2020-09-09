@@ -3,6 +3,7 @@ import {Product} from '../../model/product';
 import {ProductsService} from '../../services/products.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   products: Array<Product> = [];
   productsFavorite: Array<Product> = [];
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,6 +26,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ).subscribe(v => {
       this.products = v;
     });
+
+    /*setTimeout(() => {
+      /!*this.router.navigateByUrl('favorites');*!/
+      this.router.navigate(['favorites'], {queryParams: {i: 2}});
+    }, 5000)*/
 
   }
 

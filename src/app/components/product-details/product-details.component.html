@@ -1,0 +1,39 @@
+<div class="product-details" *ngIf="product$ | async as product ">
+  <div
+    ngClass.xs="product-details-xs"
+    ngClass.sm="product-details-sm"
+    ngClass.md="product-details-md"
+    ngClass.lg="product-details-md"
+    ngClass.xl="product-details-md"
+  >
+    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.xs="0" fxLayoutGap="10px" fxLayoutGap.lg="20px" fxLayoutGap.xl="30px">
+      <div fxFlex.sm="calc(50%-10px)" fxFlex.md="calc(50%-10px)" fxFlex.lg="calc(50%-20px)" fxFlex.xl="calc(50%-30px)"
+           class="background-image product-details__avatar" [ngStyle]="{'background-image':'url('+product.image+');'}"></div>
+      <div fxFlex.sm="calc(50%-10px)" fxFlex.md="calc(50%-10px)" fxFlex.lg="calc(50%-20px)" fxFlex.xl="calc(50%-30px)">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="mat-title">{{product.title}}</div>
+          <div class="mat-title">{{product.price}} RON</div>
+        </div>
+        <div class="mat-body-1">{{product.description}}</div>
+        <div fxLayout="row" fxLayoutGap.xs="10px" fxLayoutGap="20px" class="product-details__actions">
+          <button mat-stroked-button color="accent" fxFlex="100">
+            <mat-icon>add_shopping_cart</mat-icon>
+            <span style="margin-left: 6px">ADD PRODUCT TO CART</span>
+          </button>
+          <button
+            (click)="!isAtFavorite ? addProductToFavorite(product) : removeProductFromFavorite(product.id)"
+            class="product-item__favorite"
+            color="primary"
+            mat-raised-button
+            [matTooltip]="isAtFavorite ? 'Remove from favorite':'Add product to favorite'">
+            <mat-icon>{{isAtFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

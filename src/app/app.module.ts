@@ -18,6 +18,13 @@ import {FavoriteService} from './services/favorite.service';
 import {CartService} from './services/cart.service';
 import {ObservablesComponent} from './components/observables/observables.component';
 import {ProductFavoriteDetailsComponent} from './components/product-favorite-details/product-favorite-details.component';
+import {ProductDetailsComponent} from './components/product-details/product-details.component';
+import {ProductAdministrationGuard} from './components/product-administration/product-administration.guard';
+import {MockAuthService} from './services/mock-auth.service';
+import {ProductAdministrationLeaveGuard} from './components/product-administration/product-administration-leave.guard';
+import {ConfirmationDialogComponent} from './components/confirmation/confirmation-dialog.component';
+import {ProductListAdministrationComponent} from './components/product-administration/product-list-administration/product-list-administration.component';
+import {OrderListComponent} from './components/product-administration/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,10 @@ import {ProductFavoriteDetailsComponent} from './components/product-favorite-det
     ProductAdministrationComponent,
     ObservablesComponent,
     ProductFavoriteDetailsComponent,
+    ProductDetailsComponent,
+    ProductListAdministrationComponent,
+    OrderListComponent,
+    ConfirmationDialogComponent,
     HoverDirective
   ],
   imports: [
@@ -39,6 +50,7 @@ import {ProductFavoriteDetailsComponent} from './components/product-favorite-det
     FlexLayoutModule
   ],
   providers: [
+    MockAuthService,
     FavoriteService,
     CartService,
     {
@@ -48,7 +60,9 @@ import {ProductFavoriteDetailsComponent} from './components/product-favorite-det
           new ProductsServiceLogger(httpClient, favoriteService, cartService);
       },
       deps: [HttpClient, FavoriteService, CartService]
-    }
+    },
+    ProductAdministrationGuard,
+    ProductAdministrationLeaveGuard,
   ],
   bootstrap: [AppComponent]
 })
