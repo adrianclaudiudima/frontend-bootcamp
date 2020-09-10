@@ -1,4 +1,25 @@
+:host {
+  width: 100%;
+}
+
 .product-favorite {
+  position: relative;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  &__wrapper {
+    max-height: calc(600px - 42px);
+    overflow-y: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   &__list {
 

@@ -3,6 +3,8 @@ import {FavoriteService} from '../../services/favorite.service';
 import {Observable, Subscription} from 'rxjs';
 import {MockAuthService} from '../../services/mock-auth.service';
 import {Router} from '@angular/router';
+import {FavoriteOverlayService} from '../../services/overlay/favorite-overlay.service';
+import {CartOverlayService} from '../../services/overlay/cart-overlay.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private favoriteService: FavoriteService,
     private mockAuth: MockAuthService,
-    private router: Router) {
+    private router: Router,
+    private favoriteOverlay: FavoriteOverlayService,
+    private cartOverlayService: CartOverlayService) {
 
   }
 
@@ -43,5 +47,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.mockAuth.logout();
     this.router.navigate(['/']);
   }
+
+  showFavoriteWidget(cdkOverlayOrigin): void {
+    console.log(cdkOverlayOrigin);
+    this.favoriteOverlay.showFavoriteOverlay(cdkOverlayOrigin);
+  }
+
+  openCartOverlay(): void {
+    this.cartOverlayService.openCartOverlay();
+  }
+
 
 }

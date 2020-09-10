@@ -1,0 +1,15 @@
+<div fxLayout="row" style="height: 100%;">
+  <div fxFlex="100" class="left" [@cartDetailsLeft]="shown === true ? 'shown':'hidden' "></div>
+  <div fxFlex="600px" class="cart-container mat-elevation-z5"
+       [@cartDetailsRight]="shown === true ? 'shown':'hidden'"
+       (@cartDetailsRight.done)="handleEvent($event)">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button (click)="closeCartOverlay()" color="primary">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+      <div class="mat-title" style="margin-bottom: 0;">Cart Details</div>
+    </div>
+  </div>
+</div>
+
+

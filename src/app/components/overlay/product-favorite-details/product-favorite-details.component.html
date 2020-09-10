@@ -1,0 +1,43 @@
+<div class="product-favorite mat-elevation-z10">
+  <div class="mat-title">Favorite products</div>
+  <button class="product-favorite__close" mat-icon-button (click)="closeOverlay()" color="accent">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="product-favorite__wrapper">
+    <ng-container *ngIf="favoriteProducts$ | async as products">
+      <ng-container *ngIf="products.length > 0 else empty">
+        <div *ngFor="let item of products" class="product-favorite__list">
+          <div class="mat-body-2 product-favorite__list__row" fxLayout="row" fxLayoutAlign="start center" appHover>
+            <div [ngStyle]="{'background-image':'url('+item.image+')'}" class="background-image product-favorite__list__row__avatar" fxFlex="140px"></div>
+            <div class="product-favorite__list__row__product-description" fxFlex="100">
+              <div class="mat-subheading-1">{{item.title}}</div>
+              <div class="mat-body-1">{{item.description}}</div>
+              <div class="product-favorite__list__row__product-description__actions" fxLayout="row" fxLayoutGap="20px">
+                <button color="accent" mat-stroked-button matTooltip="Add to cart">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                  <span>ADD TO CART</span>
+                </button>
+                <button (click)="removeProduct(item)" color="primary" mat-icon-button matTooltip="Remove from favorite">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+</div>
+
+<ng-template #empty>
+  <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%;height: 200px; text-align: center">
+    <div>
+      <div class="mat-title">Missing products</div>
+      <div class="mat-body-2">Please add products to favorite...</div>
+      <button mat-stroked-button color="accent" style="margin-top: 15px;width: 120px;" (click)="closeOverlay()">DISMISS</button>
+    </div>
+  </div>
+</ng-template>
+
+

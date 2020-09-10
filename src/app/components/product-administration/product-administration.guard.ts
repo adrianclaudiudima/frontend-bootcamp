@@ -1,12 +1,12 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment} from '@angular/router';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {MockAuthService} from '../../services/mock-auth.service';
-import {tap} from 'rxjs/operators';
+import {take, tap} from 'rxjs/operators';
 
 
 @Injectable()
-export class ProductAdministrationGuard implements CanActivate {
+export class ProductAdministrationGuard implements CanActivate, CanLoad {
 
   constructor(private mockAuth: MockAuthService, private router: Router) {
   }
@@ -18,6 +18,17 @@ export class ProductAdministrationGuard implements CanActivate {
           this.router.navigate(['/']);
         }
       })
+    );
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> {
+    return this.mockAuth.isUserLoggedIn$.pipe(
+      tap(v => {
+        if (!v) {
+          this.router.navigate(['/']);
+        }
+      }),
+      take(1)
     );
   }
 

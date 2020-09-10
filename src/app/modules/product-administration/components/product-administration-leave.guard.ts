@@ -3,9 +3,9 @@ import {ProductAdministrationComponent} from './product-administration.component
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {ConfirmationDialogComponent} from '../confirmation/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../../../components/confirmation/confirmation-dialog.component';
 import {map, switchMap} from 'rxjs/operators';
-import {MockAuthService} from '../../services/mock-auth.service';
+import {MockAuthService} from '../../../services/mock-auth.service';
 
 @Injectable()
 export class ProductAdministrationLeaveGuard implements CanDeactivate<ProductAdministrationComponent> {

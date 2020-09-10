@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FavoriteService} from '../../services/favorite.service';
-import {Product} from '../../model/product';
+import {Component, OnInit} from '@angular/core';
+import {FavoriteService} from '../../../services/favorite.service';
+import {Product} from '../../../model/product';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {CartService} from '../../services/cart.service';
+import {CartService} from '../../../services/cart.service';
+import {OverlayRef} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-favorite-details',
@@ -15,14 +16,13 @@ export class ProductFavoriteDetailsComponent implements OnInit {
   product: Array<Product> = [];
   favoriteProducts$: Observable<Array<Product>>;
 
-  constructor(private favoriteService: FavoriteService, private cartService: CartService) {
+  constructor(private favoriteService: FavoriteService, private cartService: CartService, private overlayRef: OverlayRef) {
   }
 
   ngOnInit(): void {
     this.favoriteProducts$ = this.favoriteService.favoriteProducts$
       .pipe(
-        tap(p => this.product = p),
-        tap(v => console.log('=----HIT HIT HIT----='))
+        tap(p => this.product = p)
       );
   }
 
@@ -33,4 +33,9 @@ export class ProductFavoriteDetailsComponent implements OnInit {
   removeAllExceptThis(item: Product): any {
     this.cartService.removeAllExcept(item.id);
   }
+
+  closeOverlay(): void {
+    this.overlayRef.dispose();
+  }
+
 }

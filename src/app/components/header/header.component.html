@@ -26,14 +26,16 @@
 
   <div class="toolbar__actions" fxLayout="row" fxLayoutGap="10px">
     <button
-      routerLink="favorites"
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+      (click)="showFavoriteWidget(trigger)"
       [matBadge]="favoriteCount"
       matBadgeColor="accent"
       mat-icon-button
       aria-label="Favorite information">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-icon-button aria-label="Cart information">
+    <button (click)="openCartOverlay()" mat-icon-button aria-label="Cart information">
       <mat-icon>shopping_basket</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">

@@ -8,23 +8,28 @@ import {MaterialModule} from './modules/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HeaderComponent} from './components/header/header.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ProductItemComponent} from './components/product-item/product-item.component';
-import {ProductAdministrationComponent} from './components/product-administration/product-administration.component';
-import {HoverDirective} from './directives/hover.directive';
 import {ProductsService, ProductsServiceImpl, ProductsServiceLogger} from './services/products.service';
 import {environment} from '../environments/environment';
 import {FavoriteService} from './services/favorite.service';
 import {CartService} from './services/cart.service';
 import {ObservablesComponent} from './components/observables/observables.component';
-import {ProductFavoriteDetailsComponent} from './components/product-favorite-details/product-favorite-details.component';
+import {ProductFavoriteDetailsComponent} from './components/overlay/product-favorite-details/product-favorite-details.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
 import {ProductAdministrationGuard} from './components/product-administration/product-administration.guard';
 import {MockAuthService} from './services/mock-auth.service';
-import {ProductAdministrationLeaveGuard} from './components/product-administration/product-administration-leave.guard';
+import {ProductAdministrationLeaveGuard} from './modules/product-administration/components/product-administration-leave.guard';
 import {ConfirmationDialogComponent} from './components/confirmation/confirmation-dialog.component';
-import {ProductListAdministrationComponent} from './components/product-administration/product-list-administration/product-list-administration.component';
-import {OrderListComponent} from './components/product-administration/order-list/order-list.component';
+import {LoadingService} from './services/loading.service';
+import {LoadingInterceptor} from './services/loading.interceptor';
+import {LoadingOverlayService} from './services/overlay/loading-overlay.service';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {LoadingOverlayComponent} from './components/overlay/loading-overlay/loading-overlay.component';
+import {FavoriteOverlayService} from './services/overlay/favorite-overlay.service';
+import {SharedModule} from './modules/shared/shared.module';
+import {CartDetailsOverlayComponent} from './components/overlay/cart-details-overlay/cart-details-overlay.component';
+import {CartOverlayService} from './services/overlay/cart-overlay.service';
 
 @NgModule({
   declarations: [
@@ -32,24 +37,33 @@ import {OrderListComponent} from './components/product-administration/order-list
     HeaderComponent,
     ProductListComponent,
     ProductItemComponent,
-    ProductAdministrationComponent,
     ObservablesComponent,
     ProductFavoriteDetailsComponent,
     ProductDetailsComponent,
-    ProductListAdministrationComponent,
-    OrderListComponent,
     ConfirmationDialogComponent,
-    HoverDirective
+    LoadingOverlayComponent,
+    CartDetailsOverlayComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SharedModule,
     AppRoutingModule,
     MaterialModule,
+    OverlayModule,
     FlexLayoutModule
   ],
   providers: [
+    LoadingOverlayService,
+    CartOverlayService,
+    FavoriteOverlayService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
+    LoadingService,
     MockAuthService,
     FavoriteService,
     CartService,

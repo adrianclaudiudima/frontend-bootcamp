@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
-import {Observable, ReplaySubject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Injectable()
 export class FavoriteService {
 
   private favoriteProducts: Array<Product> = [];
-  private favoriteSubject: ReplaySubject<Array<Product>> = new ReplaySubject<Array<Product>>(1);
+  private favoriteSubject: Subject<Array<Product>> = new BehaviorSubject<Array<Product>>([]);
   public favoriteProducts$ = this.favoriteSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {
@@ -17,7 +17,6 @@ export class FavoriteService {
   addProductToFavorite(product: Product): void {
     this.favoriteProducts.push(product);
     this.favoriteSubject.next(this.favoriteProducts);
-    console.log(this.favoriteProducts);
   }
 
   public getSomething(): number {
