@@ -4,6 +4,7 @@ import {ProductsService} from '../../services/products.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
+import {ProductAdministrationService} from '../../modules/product-administration/services/product-administration.service';
 
 @Component({
   selector: 'app-product-list',
@@ -26,11 +27,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ).subscribe(v => {
       this.products = v;
     });
-
-    /*setTimeout(() => {
-      /!*this.router.navigateByUrl('favorites');*!/
-      this.router.navigate(['favorites'], {queryParams: {i: 2}});
-    }, 5000)*/
 
   }
 

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../../model/product';
 import {ProductsService} from '../../../../services/products.service';
+import {ProductAdministrationService} from '../../services/product-administration.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list-administration',
@@ -10,7 +12,7 @@ import {ProductsService} from '../../../../services/products.service';
 export class ProductListAdministrationComponent implements OnInit {
   products: Array<Product> = [];
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService, private productAdministrationService: ProductAdministrationService) {
   }
 
   ngOnInit(): void {
@@ -19,5 +21,14 @@ export class ProductListAdministrationComponent implements OnInit {
     });
   }
 
+
+  removeProduct(id: number): void {
+    this.productAdministrationService.removeProduct(id)
+      .pipe(
+        switchMap((value) => this.productsService.loadProducts()),
+      ).subscribe(newListOfProducts => {
+      this.products = newListOfProducts;
+    });
+  }
 
 }

@@ -5,6 +5,7 @@ import {ProductAdministrationLeaveGuard} from './components/product-administrati
 import {ProductListAdministrationComponent} from './components/product-list-administration/product-list-administration.component';
 import {OrderListComponent} from './components/order-list/order-list.component';
 import {RouterModule} from '@angular/router';
+import {CreateProductComponent} from './components/create-product/create-product.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {RouterModule} from '@angular/router';
           component: OrderListComponent
         }, {
           path: '',
-          component: ProductListAdministrationComponent
+          component: CreateProductComponent
         }
       ]
     }

@@ -1,0 +1,71 @@
+<div class="create-product">
+
+  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="formSubmitted">
+
+    <div style="text-align: center; max-width: 440px;" class="mat-elevation-z3" *ngIf="successfullyCreatedProduct">
+      <div fxLayout="column" fxLayoutAlign="center center" style="padding: 20px;width: 440px">
+        <div class="mat-title">Created product</div>
+        <div class="mat-body-2">
+          Successfully created product.
+        </div>
+        <button mat-raised-button color="accent" style="margin-top: 20px;width: 200px" (click)="resetForm()">Create new product</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; max-width: 440px;" class="mat-elevation-z3" *ngIf="failedCreatingProduct">
+      <div fxLayout="column" fxLayoutAlign="center center" style="padding: 20px">
+        <div class="mat-title">Something went wrong</div>
+        <div class="mat-body-2">
+          Something went wrong and the product couldn't be created. Please try again later...
+        </div>
+        <button mat-raised-button color="warn" style="margin-top: 20px;width: 200px" (click)="handleFormSubmit()">Retry</button>
+      </div>
+    </div>
+
+  </div>
+
+  <form fxLayout="column" fxLayoutGap="10px" [formGroup]="productFormGroup" (ngSubmit)="handleFormSubmit()" *ngIf="!formSubmitted">
+    <div class="mat-title">Create new product</div>
+    <mat-form-field appearance="outline">
+      <mat-label>Product title</mat-label>
+      <input type="text" matInput formControlName="productTitle">
+      <mat-error *ngIf="productFormGroup.get('productTitle').hasError('required')">
+        Product title is required
+      </mat-error>
+      <mat-error *ngIf="productFormGroup.get('productTitle').hasError('productAlreadyCreated')">
+        This product is already created, please choose another name
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product description</mat-label>
+      <input type="text" matInput formControlName="productDescription">
+      <mat-error *ngIf="productFormGroup.get('productDescription').hasError('required')">
+        Product description is required
+      </mat-error>
+      <mat-error *ngIf="productFormGroup.get('productDescription').hasError('minlength')">
+        Product description should be longer than 3 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product image</mat-label>
+      <input type="text" matInput formControlName="productImage">
+      <mat-error *ngIf="productFormGroup.get('productImage').hasError('required')">
+        Product image is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Price</mat-label>
+      <input type="number" matInput formControlName="productPrice">
+      <mat-error *ngIf="productFormGroup.get('productPrice').hasError('required')">
+        Product price is required
+      </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-stroked-button color="accent">Create Product</button>
+
+  </form>
+
+</div>

@@ -14,6 +14,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
+    MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,
@@ -27,6 +29,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ],
   exports: [
+    MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,

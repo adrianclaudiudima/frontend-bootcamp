@@ -50,8 +50,6 @@ export class ProductsServiceLogger extends ProductsService {
   }
 
   loadProducts(): Observable<Array<Product>> {
-    this.favoriteService.getSomething();
-    console.log('Calling products endpoint');
     return this.httpClient.get<Array<Product>>(`${this.hostUrl}/products`).pipe(
       tap(response => {
         console.log('Products successfully called ');

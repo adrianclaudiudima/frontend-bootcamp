@@ -1,0 +1,13 @@
+.product-administration {
+  mat-toolbar {
+    height: 45px;
+    margin-bottom: 20px;
+    background: #ff8a65;
+
+    .mat-title {
+      margin-bottom: 0;
+      color: #2e2936;
+    }
+
+  }
+}

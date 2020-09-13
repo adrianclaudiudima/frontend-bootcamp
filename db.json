@@ -69,6 +69,13 @@
       "image": "https://picsum.photos/809/1000",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias delectus deleniti, ipsam nam quae voluptates voluptatum.",
       "price": 330
+    },
+    {
+      "id": 11,
+      "price": 333,
+      "description": "Some other description",
+      "title": "Another product",
+      "image": "https://picsum.photos/809/1000"
     }
   ]
 }
