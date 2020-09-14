@@ -1,10 +1,11 @@
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 import {Product} from '../model/product';
 import {Injectable} from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {FavoriteService} from './favorite.service';
 import {CartService} from './cart.service';
+import {DomainStatus, Status} from '../modules/shared/models/DomainStatus';
 
 const serviceHostUrl = 'http://localhost:3000';
 
@@ -20,7 +21,9 @@ export class ProductsServiceImpl extends ProductsService {
 
   hostUrl = serviceHostUrl;
 
-  constructor(private httpClient: HttpClient, private favoriteService: FavoriteService, private cartService: CartService) {
+  constructor(private httpClient: HttpClient,
+              private favoriteService: FavoriteService,
+              private cartService: CartService) {
     super();
   }
 
@@ -49,13 +52,8 @@ export class ProductsServiceLogger extends ProductsService {
     return this.httpClient.get<Product>(`${this.hostUrl}/products/${id}`);
   }
 
-  loadProducts(): Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>>(`${this.hostUrl}/products`).pipe(
-      tap(response => {
-        console.log('Products successfully called ');
-        console.log(response);
-      })
-    );
+  public loadProducts(): Observable<Array<Product>> {
+    return this.httpClient.get<Array<Product>>(`${this.hostUrl}/products`);
   }
 
 }

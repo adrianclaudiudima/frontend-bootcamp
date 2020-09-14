@@ -30,6 +30,8 @@ import {FavoriteOverlayService} from './services/overlay/favorite-overlay.servic
 import {SharedModule} from './modules/shared/shared.module';
 import {CartDetailsOverlayComponent} from './components/overlay/cart-details-overlay/cart-details-overlay.component';
 import {CartOverlayService} from './services/overlay/cart-overlay.service';
+import {ProductsStateService} from './services/products-state.service';
+import {NotificationService} from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import {CartOverlayService} from './services/overlay/cart-overlay.service';
     LoadingOverlayService,
     CartOverlayService,
     FavoriteOverlayService,
+    ProductsStateService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
@@ -65,6 +68,7 @@ import {CartOverlayService} from './services/overlay/cart-overlay.service';
     },
     LoadingService,
     MockAuthService,
+    NotificationService,
     FavoriteService,
     CartService,
     {
@@ -73,12 +77,12 @@ import {CartOverlayService} from './services/overlay/cart-overlay.service';
         return environment.production === true ? new ProductsServiceImpl(httpClient, favoriteService, cartService) :
           new ProductsServiceLogger(httpClient, favoriteService, cartService);
       },
-      deps: [HttpClient, FavoriteService, CartService]
+      deps: [ HttpClient, FavoriteService, CartService ]
     },
     ProductAdministrationGuard,
     ProductAdministrationLeaveGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {
 }

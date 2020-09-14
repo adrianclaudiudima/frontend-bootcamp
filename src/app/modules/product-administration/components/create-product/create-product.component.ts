@@ -78,9 +78,7 @@ export class CreateProductComponent implements OnInit {
           return of(null);
         }),
         first()
-      )
-
-        ;
+      );
     };
   }
 

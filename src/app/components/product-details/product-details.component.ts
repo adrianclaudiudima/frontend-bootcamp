@@ -10,7 +10,7 @@ import {FavoriteService} from '../../services/favorite.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: 'product-details.component.html',
-  styleUrls: ['product-details.component.scss']
+  styleUrls: [ 'product-details.component.scss' ]
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
@@ -27,7 +27,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       map<any, number>(paramMap => paramMap.get('id')),
       switchMap(productId => this.productService.loadProductById(productId)),
       tap(product => {
-        this.isAtFavoriteSubscription = this.favoriteService.isProductAtFavorite(product.id).pipe(tap(v => console.log(v)))
+        this.isAtFavoriteSubscription = this.favoriteService.isProductAtFavorite(product.id)
           .subscribe(fav => this.isAtFavorite = fav);
       }),
       take(1)

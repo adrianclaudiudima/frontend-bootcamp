@@ -1,33 +1,34 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
-import {ProductsService} from '../../services/products.service';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {Router} from '@angular/router';
-import {ProductAdministrationService} from '../../modules/product-administration/services/product-administration.service';
+import {Subject, Subscription} from 'rxjs';
+import {ProductsStateService} from '../../services/products-state.service';
+import {DomainStatus, Status} from '../../modules/shared/models/DomainStatus';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: 'product-list.component.html',
-  styleUrls: ['product-list.component.scss']
+  styleUrls: [ 'product-list.component.scss' ]
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
   s = new Subject();
   showProductFavorite = false;
-  products: Array<Product> = [];
+  requestStatuses: typeof Status = Status;
+  domainStatusProducts: DomainStatus<Array<Product>>;
   productsFavorite: Array<Product> = [];
+  hasError: boolean;
+  subscriptions: Subscription[] = [];
 
-  constructor(private productsService: ProductsService, private router: Router) {
+  constructor(private productServiceState: ProductsStateService) {
   }
 
   ngOnInit(): void {
-    this.productsService.loadProducts().pipe(
-      takeUntil(this.s),
-    ).subscribe(v => {
-      this.products = v;
-    });
-
+    this.loadProducts();
+    this.subscriptions.push(
+      this.productServiceState.productsDomainStatus$.subscribe((productsDomainStatus: DomainStatus<Array<Product>>) => {
+        this.domainStatusProducts = productsDomainStatus;
+      })
+    );
   }
 
   handleProductAddedToFavorite(product: Product): void {
@@ -35,9 +36,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('On destroy from product list');
     this.s.next();
     this.s.complete();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  public loadProducts(): void {
+    this.subscriptions.push(this.productServiceState.loadProductsAndHandleResponse().subscribe());
   }
 
 }
