@@ -76,13 +76,6 @@
       "description": "Some other description",
       "title": "Another product",
       "image": "https://picsum.photos/809/1000"
-    },
-    {
-      "id": 12,
-      "price": 213,
-      "description": "1234",
-      "title": "user1",
-      "image": "user1"
     }
   ]
 }
