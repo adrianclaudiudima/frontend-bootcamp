@@ -77,12 +77,12 @@ import {NotificationService} from './services/notification.service';
         return environment.production === true ? new ProductsServiceImpl(httpClient, favoriteService, cartService) :
           new ProductsServiceLogger(httpClient, favoriteService, cartService);
       },
-      deps: [ HttpClient, FavoriteService, CartService ]
+      deps: [HttpClient, FavoriteService, CartService]
     },
     ProductAdministrationGuard,
     ProductAdministrationLeaveGuard,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
