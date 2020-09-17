@@ -5,6 +5,9 @@ import {ProductsService} from '../../services/products.service';
 import {Observable, Subscription} from 'rxjs';
 import {Product} from '../../model/product';
 import {FavoriteService} from '../../services/favorite.service';
+import {AppState} from '../../store';
+import {Store} from '@ngrx/store';
+import {AddProductToCartAction} from '../../store/cart/cart.actions';
 
 
 @Component({
@@ -18,7 +21,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   isAtFavoriteSubscription: Subscription;
   product$: Observable<Product>;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private productService: ProductsService,
+  constructor(private router: Router,
+              private store: Store<AppState>,
+              private activatedRoute: ActivatedRoute,
+              private productService: ProductsService,
               private favoriteService: FavoriteService) {
   }
 
@@ -48,5 +54,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.isAtFavoriteSubscription.unsubscribe();
   }
 
-
+  addProductToCart() {
+    this.product$.subscribe((product: Product) => {
+      this.store.dispatch(new AddProductToCartAction(product));
+    });
+  }
 }

@@ -1,0 +1,20 @@
+<div class="mat-body-2 product-cart__list__row" fxLayout="row" fxLayoutAlign="start center" appHover>
+  <div [ngStyle]="{'background-image':'url('+item.image+')'}" class="background-image product-cart__list__row__avatar"
+       fxFlex="140px"></div>
+  <div class="product-cart__list__row__product-description" fxFlex="100">
+    <div class="mat-subheading-1">{{item.title}}</div>
+    <div class="mat-body-1">{{item.description}}</div>
+    <div class="product-cart__list__row__product-description__actions" fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field appearance="outline">
+        <mat-select [formControl]="quantityControl" (selectionChange)="handleQuantitySelection($event)">
+          <mat-option [value]=i *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]">
+            {{i}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button (click)="removeProduct()" color="primary" mat-icon-button matTooltip="Remove from cart">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

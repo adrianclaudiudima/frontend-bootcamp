@@ -6,6 +6,9 @@ import {map, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {ProductsService} from '../../services/products.service';
 import {FavoriteOverlayService} from '../../services/overlay/favorite-overlay.service';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store';
+import {AddProductToCartAction} from '../../store/cart/cart.actions';
 
 @Component({
   selector: 'app-product-item',
@@ -22,9 +25,8 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     private favoriteService: FavoriteService,
     private activatedRoute: ActivatedRoute,
     private proService: ProductsService,
-    private favoriteOverlayService: FavoriteOverlayService) {
-
-
+    private favoriteOverlayService: FavoriteOverlayService,
+    private store: Store<AppState>) {
   }
 
   @Input()
@@ -67,5 +69,9 @@ export class ProductItemComponent implements OnInit, OnDestroy {
   showFavoriteWidget(element) {
     this.favoriteOverlayService.showFavoriteOverlay(element);
 
+  }
+
+  addProductToCart(): void {
+    this.store.dispatch(new AddProductToCartAction(this.product));
   }
 }
