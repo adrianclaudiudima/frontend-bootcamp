@@ -32,6 +32,11 @@ import {CartDetailsOverlayComponent} from './components/overlay/cart-details-ove
 import {CartOverlayService} from './services/overlay/cart-overlay.service';
 import {ProductsStateService} from './services/products-state.service';
 import {NotificationService} from './services/notification.service';
+import {StoreModule} from '@ngrx/store';
+import {appReducers} from './store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {CartProductItemComponent} from './components/overlay/cart-details-overlay/cart-product-item/cart-product-item.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +49,8 @@ import {NotificationService} from './services/notification.service';
     ProductDetailsComponent,
     ConfirmationDialogComponent,
     LoadingOverlayComponent,
-    CartDetailsOverlayComponent
+    CartDetailsOverlayComponent,
+    CartProductItemComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,10 @@ import {NotificationService} from './services/notification.service';
     AppRoutingModule,
     MaterialModule,
     OverlayModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: !environment.production })
   ],
   providers: [
     LoadingOverlayService,

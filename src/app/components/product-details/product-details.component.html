@@ -16,7 +16,7 @@
         </div>
         <div class="mat-body-1">{{product.description}}</div>
         <div fxLayout="row" fxLayoutGap.xs="10px" fxLayoutGap="20px" class="product-details__actions">
-          <button mat-stroked-button color="accent" fxFlex="100">
+          <button (click)="addProductToCart()" mat-stroked-button color="accent" fxFlex="100">
             <mat-icon>add_shopping_cart</mat-icon>
             <span style="margin-left: 6px">ADD PRODUCT TO CART</span>
           </button>

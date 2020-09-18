@@ -9,7 +9,23 @@
       </button>
       <div class="mat-title" style="margin-bottom: 0;">Cart Details</div>
     </div>
+    <ng-container *ngIf="cartProducts$ | async as cartProducts">
+      <ng-container *ngIf="cartProducts.length > 0 else empty">
+        <div *ngFor="let item of cartProducts">
+          <app-cart-product-item [item]="item"></app-cart-product-item>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #empty>
+  <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%;height: 200px; text-align: center">
+    <div>
+      <div class="mat-title">Missing products</div>
+      <div class="mat-body-2">Please add products to favorite...</div>
+    </div>
+  </div>
+</ng-template>
 
 
