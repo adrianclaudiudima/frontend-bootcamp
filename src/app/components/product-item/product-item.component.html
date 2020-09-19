@@ -1,28 +1,39 @@
 <div class="product-item mat-elevation-z2" appHover>
-  <button style="z-index: 10"
-          (click)="!isAtFavorite ? addProductToFavorite() : removeProductFromFavorite()"
-          class="product-item__favorite"
-          color="primary"
-          mat-mini-fab
-          [matTooltip]="isAtFavorite ? 'Remove from favorite':'Add product to favorite'">
-    <mat-icon>{{isAtFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
-  </button>
+  <div class="product-item__actions"
+       fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
 
-  <div
-    [routerLink]="'product/'+product.id"
-    [queryParams]="{productId:product.id}"
-    matRipple
-    class="product-item__image background-image"
-    [ngStyle]="{'background-image':'url('+product.image+');'}">
+    <button style="z-index: 10"
+            (click)="!isAtFavorite ? addProductToFavorite() : removeProductFromFavorite()"
+            color="primary"
+            mat-mini-fab
+            [matTooltip]="isAtFavorite ? 'Remove from favorite':'Add product to favorite'">
+      <mat-icon>{{isAtFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+    </button>
+
+    <button style="z-index: 10"
+            (click)="!isAtWishlist ? addProductToWishlist() : removeProductFromWishlist()"
+            color="primary"
+            mat-mini-fab
+            [matTooltip]="isAtWishlist ? 'Remove from wishlist':'Add product to wishlist'">
+      <mat-icon>{{isAtWishlist ? 'thumb_down' : 'thumb_up'}}</mat-icon>
+    </button>
+  </div>
+
+  <div [routerLink]="'product/'+product.id"
+       [queryParams]="{productId:product.id}"
+       matRipple
+       class="product-item__image background-image"
+       [ngStyle]="{'background-image':'url('+product.image+');'}">
   </div>
 
   <div class="product-item__content">
     <div class="mat-title">{{product.title}}</div>
     <div class="mat-body-1 product-item__content__description">{{product.description}}</div>
     <div class="product-item__content__actions" fxLayout="row" fxLayoutAlign="center center">
-      <button mat-stroked-button color="accent" matTooltip="Add product to your cart list">
+      <button mat-stroked-button color="accent" matTooltip="Add product to your cart list" (click)="addProductToCart()">
         <mat-icon>shopping_cart</mat-icon>
-        <span>ADD TO CART</span></button>
+        <span>ADD TO CART</span>
+      </button>
     </div>
   </div>
   <button cdkOverlayOrigin

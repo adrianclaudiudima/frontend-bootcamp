@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\overlay",
+    "\\src\\app\\components\\overlay\\cart-details-overlay",
+    "\\src\\app\\components\\overlay\\cart-product-item",
+    "\\src\\app\\store",
+    "\\src\\app\\store\\cart"
+  ],
+  "SelectedNode": "\\src\\app\\store\\cart\\cart.reducer.ts",
+  "PreviewInSolutionExplorer": false
+}

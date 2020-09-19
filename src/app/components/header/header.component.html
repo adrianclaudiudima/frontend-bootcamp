@@ -25,15 +25,23 @@
 
 
   <div class="toolbar__actions" fxLayout="row" fxLayoutGap="10px">
-    <button
-      cdkOverlayOrigin
-      #trigger="cdkOverlayOrigin"
-      (click)="showFavoriteWidget(trigger)"
-      [matBadge]="favoriteCount"
-      matBadgeColor="accent"
-      mat-icon-button
-      aria-label="Favorite information">
+    <button cdkOverlayOrigin
+            #trigger="cdkOverlayOrigin"
+            (click)="showFavoriteWidget(trigger)"
+            [matBadge]="favoriteCount"
+            matBadgeColor="accent"
+            mat-icon-button
+            aria-label="Favorite information">
       <mat-icon>favorite</mat-icon>
+    </button>
+    <button cdkOverlayOrigin
+            #trigger="cdkOverlayOrigin"
+            (click)="showWishlistWidget(trigger)"
+            [matBadge]="wishlistCount"
+            matBadgeColor="accent"
+            mat-icon-button
+            aria-label="Wishlist information">
+      <mat-icon>thumb_up</mat-icon>
     </button>
     <button (click)="openCartOverlay()" mat-icon-button aria-label="Cart information">
       <mat-icon>shopping_basket</mat-icon>

@@ -5,6 +5,7 @@ import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {CartService} from '../../../services/cart.service';
 import {OverlayRef} from '@angular/cdk/overlay';
+import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-favorite-details',
@@ -16,8 +17,12 @@ export class ProductFavoriteDetailsComponent implements OnInit {
   product: Array<Product> = [];
   favoriteProducts$: Observable<Array<Product>>;
 
-  constructor(private favoriteService: FavoriteService, private cartService: CartService, private overlayRef: OverlayRef) {
-  }
+  constructor(
+    private favoriteService: FavoriteService,
+    private wishlistService: WishlistService,
+    private cartService: CartService,
+    private overlayRef: OverlayRef
+  ) {}
 
   ngOnInit(): void {
     this.favoriteProducts$ = this.favoriteService.favoriteProducts$
@@ -28,6 +33,11 @@ export class ProductFavoriteDetailsComponent implements OnInit {
 
   removeProduct(productToRemove: Product): void {
     this.favoriteService.removeProductFromFavorite(productToRemove.id);
+  }
+
+  moveToWishlist(product: Product) {
+    this.wishlistService.addProduct(product);
+    this.removeProduct(product);
   }
 
   removeAllExceptThis(item: Product): any {

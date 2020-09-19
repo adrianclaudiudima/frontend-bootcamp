@@ -10,7 +10,8 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   exports: [
     MatInputModule,
@@ -43,7 +45,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatRippleModule,
     MatDialogModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {

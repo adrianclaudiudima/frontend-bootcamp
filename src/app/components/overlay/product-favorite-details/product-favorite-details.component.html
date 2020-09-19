@@ -17,6 +17,10 @@
                   <mat-icon>add_shopping_cart</mat-icon>
                   <span>ADD TO CART</span>
                 </button>
+                <button (click)="moveToWishlist(item)" color="accent" mat-stroked-button matTooltip="Move to wishlist">
+                  <mat-icon>thumb_up</mat-icon>
+                  <span>MOVE TO WISHLIST</span>
+                </button>
                 <button (click)="removeProduct(item)" color="primary" mat-icon-button matTooltip="Remove from favorite">
                   <mat-icon>delete_outline</mat-icon>
                 </button>

@@ -1,23 +1,25 @@
-import {Injectable, Injector} from '@angular/core';
-import {Overlay, OverlayRef} from '@angular/cdk/overlay';
-import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
-import {ProductFavoriteDetailsComponent} from '../../components/overlay/product-favorite-details/product-favorite-details.component';
-import {take} from 'rxjs/operators';
-import {ReplaySubject, Subject} from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { take } from 'rxjs/operators';
+import { ReplaySubject, Subject } from 'rxjs';
+import { ProductWishlistDetailsComponent } from '../../components/overlay/product-wishlist-details/product-wishlist-details.component';
 
 @Injectable()
-export class FavoriteOverlayService {
+export class WishlistOverlayService {
 
 
-  constructor(private overlayService: Overlay, private injector: Injector) {
-  }
+  constructor(
+    private overlayService: Overlay,
+    private injector: Injector
+  ) { }
 
 
-  showFavoriteOverlay(element): void {
+  showWishlistOverlay(element): void {
     console.log(element);
     const overlayRef: OverlayRef = this.overlayService.create({
       width: '800px',
-      height: '300px',
+      height: '400px',
       maxHeight: '600px',
       disposeOnNavigation: true,
       hasBackdrop: true,
@@ -41,8 +43,8 @@ export class FavoriteOverlayService {
     injectionTokens.set(Subject, notificationSubject);
     const portalInjectionTokens = new PortalInjector(this.injector, injectionTokens);
 
-    const componentPortal: ComponentPortal<ProductFavoriteDetailsComponent> =
-      new ComponentPortal<ProductFavoriteDetailsComponent>(ProductFavoriteDetailsComponent, null, portalInjectionTokens);
+    const componentPortal: ComponentPortal<ProductWishlistDetailsComponent> =
+      new ComponentPortal<ProductWishlistDetailsComponent>(ProductWishlistDetailsComponent, null, portalInjectionTokens);
 
     notificationSubject.asObservable().pipe(
       take(1)
