@@ -12,4 +12,12 @@ export class NotificationService {
       duration: 2000
     });
   }
+
+  public showCustomSnackBar(text: string): void {
+    this.snackBar.open(text, 'Okay', {
+      duration: 4000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
 }

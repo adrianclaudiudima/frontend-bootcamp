@@ -8,6 +8,7 @@ export interface DomainStatus<T> {
 
 export enum Status {
   NEW = 'NEW',
+  PENDING = 'PENDING',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED'
 }

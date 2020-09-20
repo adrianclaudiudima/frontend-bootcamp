@@ -77,5 +77,6 @@
       "title": "Another product",
       "image": "https://picsum.photos/809/1000"
     }
-  ]
+  ],
+  "orders": []
 }
