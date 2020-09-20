@@ -37,6 +37,8 @@ import {appReducers} from './store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {CartProductItemComponent} from './components/overlay/cart-details-overlay/cart-product-item/cart-product-item.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {EffectsModule} from '@ngrx/effects';
+import {CartEffects} from './store/cart/cart.effects';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     FlexLayoutModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([CartEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: !environment.production })
   ],
   providers: [

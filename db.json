@@ -77,5 +77,25 @@
       "title": "Another product",
       "image": "https://picsum.photos/809/1000"
     }
+  ],
+  "orders": [
+    [
+      {
+        "id": 2,
+        "title": "Second Product",
+        "image": "https://picsum.photos/801/1000",
+        "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+        "price": 200,
+        "quantity": 3
+      },
+      {
+        "id": 1,
+        "title": "First product",
+        "image": "https://picsum.photos/800/1000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+        "price": 300,
+        "quantity": 3
+      }
+    ]
   ]
 }

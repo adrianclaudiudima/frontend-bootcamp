@@ -6,8 +6,9 @@ import {catchError, map} from 'rxjs/operators';
 import {FavoriteService} from './favorite.service';
 import {CartService} from './cart.service';
 import {DomainStatus, Status} from '../modules/shared/models/DomainStatus';
+import {environment} from '../../environments/environment';
 
-const serviceHostUrl = 'http://localhost:3000';
+const serviceHostUrl = environment.serviceHostUrl;
 
 export abstract class ProductsService {
   public abstract loadProducts(): Observable<Array<Product>>;
