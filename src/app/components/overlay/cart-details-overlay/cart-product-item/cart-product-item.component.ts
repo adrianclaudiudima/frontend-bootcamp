@@ -5,6 +5,7 @@ import {MatSelectChange} from '@angular/material/select';
 import {RemoveProductFromCartAction, UpdateProductFromCartAction} from '../../../../store/cart/cart.actions';
 import {AppState} from '../../../../store';
 import {Store} from '@ngrx/store';
+import {ProductItemType} from './product-item-type.enum';
 
 @Component({
   selector: 'app-cart-product-item',
@@ -15,8 +16,11 @@ export class CartProductItemComponent implements OnInit {
 
   @Input()
   item: CartProduct;
-  quantityControl: FormControl;
+  @Input()
+  type: ProductItemType;
+  productItemType: typeof ProductItemType = ProductItemType;
 
+  quantityControl: FormControl;
 
   constructor(private store: Store<AppState>) {
   }

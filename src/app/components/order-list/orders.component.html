@@ -1,0 +1,22 @@
+<ng-container *ngIf="orders$ | async as orders">
+  <div class="mat-title">Your orders:</div>
+  <ng-container *ngIf="orders.length > 0 else empty">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div *ngFor="let order of orders; let i=index">
+        <div class="mat-h3">Order no: {{(orderIds$ | async)[i]}}</div>
+        <div *ngFor="let item of order">
+          <app-cart-product-item [item]="item" [type]="productItemType.ORDER"></app-cart-product-item>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #empty>
+  <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%;height: 200px; text-align: center">
+    <div>
+      <div class="mat-title">Missing orders</div>
+      <div class="mat-body-2">Please create some orders...</div>
+    </div>
+  </div>
+</ng-template>

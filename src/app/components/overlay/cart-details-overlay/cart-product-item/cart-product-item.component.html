@@ -8,13 +8,15 @@
       <div>Price: {{item.price * item.quantity}}$</div>
       <div fxLayout="row" fxLayoutGap="20px">
         <mat-form-field class="short-form-field">
-          <mat-select [formControl]="quantityControl" (selectionChange)="handleQuantitySelection($event)">
+          <mat-select [formControl]="quantityControl"
+                      [disabled]="type === productItemType.ORDER"
+                      (selectionChange)="handleQuantitySelection($event)">
             <mat-option [value]=i *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]">
               {{i}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <button (click)="removeProduct()" color="primary" mat-icon-button matTooltip="Remove from cart">
+        <button *ngIf="type === productItemType.CART" (click)="removeProduct()" color="primary" mat-icon-button matTooltip="Remove from cart">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </div>

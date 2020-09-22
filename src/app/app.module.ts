@@ -39,6 +39,9 @@ import {CartProductItemComponent} from './components/overlay/cart-details-overla
 import {ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from './store/cart/cart.effects';
+import {OrdersService} from './services/orders.service';
+import {OrdersComponent} from './components/order-list/orders.component';
+import {OrdersEffects} from './store/orders/orders.effects';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import {CartEffects} from './store/cart/cart.effects';
     ConfirmationDialogComponent,
     LoadingOverlayComponent,
     CartDetailsOverlayComponent,
-    CartProductItemComponent
+    CartProductItemComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,7 @@ import {CartEffects} from './store/cart/cart.effects';
     FlexLayoutModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([CartEffects]),
+    EffectsModule.forRoot([CartEffects, OrdersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: !environment.production })
   ],
   providers: [
@@ -83,6 +87,7 @@ import {CartEffects} from './store/cart/cart.effects';
     NotificationService,
     FavoriteService,
     CartService,
+    OrdersService,
     {
       provide: ProductsService,
       useFactory: (httpClient: HttpClient, favoriteService: FavoriteService, cartService: CartService) => {

@@ -13,6 +13,9 @@
   <mat-menu #menu="matMenu">
     <ng-container *ngIf="userLoggedIn | async as user else logout">
       <button mat-menu-item
+              routerLink="orders">Orders
+      </button>
+      <button mat-menu-item
               routerLink="product-administration"
               routerLinkActive="class-when-product-administration-is-active">Product Administration
       </button>
@@ -35,7 +38,11 @@
       aria-label="Favorite information">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button (click)="openCartOverlay()" mat-icon-button aria-label="Cart information">
+    <button (click)="openCartOverlay()"
+            [matBadge]="cartCount$ | async"
+            matBadgeColor="accent"
+            mat-icon-button
+            aria-label="Cart information">
       <mat-icon>shopping_basket</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">

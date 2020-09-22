@@ -12,12 +12,13 @@ import {
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {CartProduct} from '../../model/product';
 import {of} from 'rxjs';
+import {OrdersService} from '../../services/orders.service';
 
 @Injectable()
 export class CartEffects {
 
   constructor(private actions$: Actions,
-              private cartService: CartService,
+              private ordersService: OrdersService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +26,7 @@ export class CartEffects {
   placedOrder$ = this.actions$.pipe(
     ofType<PlaceOrderFromCartAction>(CartProductsTypes.PLACE_ORDER_FROM_CART),
     map((action: PlaceOrderFromCartAction) => action.payload),
-    switchMap((orderedProducts: Array<CartProduct>) => this.cartService.placeOrder(orderedProducts).pipe(
+    switchMap((orderedProducts: Array<CartProduct>) => this.ordersService.createOrder(orderedProducts).pipe(
       switchMap((orderedProductsResponse: Array<CartProduct>) => {
         this.notificationService.showCustomSnackBar('Your ordered was successfully submitted!')
         return [new PlaceOrderFromCartSuccessAction(orderedProductsResponse), new RemoveAllProductsFromCartAction()];
