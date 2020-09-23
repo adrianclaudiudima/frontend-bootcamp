@@ -9,6 +9,8 @@ import {select, Store} from '@ngrx/store';
 import {CartProduct} from '../../../model/product';
 import {map, take} from 'rxjs/operators';
 import {PlaceOrderFromCartAction} from '../../../store/cart/cart.actions';
+import * as fromCart from './../../../store/cart';
+import {ProductItemType} from './cart-product-item/product-item-type.enum';
 
 @Component({
   selector: 'app-cart-overlay',
@@ -21,6 +23,7 @@ export class CartDetailsOverlayComponent implements OnInit {
   shown = true;
   cartProducts$: Observable<CartProduct[]>;
   cartTotalPrice$: Observable<number>;
+  productItemType: typeof ProductItemType = ProductItemType;
 
   constructor(private overlayRef: OverlayRef,
               private store: Store<AppState>,
@@ -29,7 +32,7 @@ export class CartDetailsOverlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartProducts$ = this.store.pipe(
-      select((state: AppState) => state.cartState.products)
+      select(fromCart.selectProducts)
     );
     this.cartTotalPrice$ = this.cartProducts$.pipe(
       map((cartProducts: Array<CartProduct>) => {

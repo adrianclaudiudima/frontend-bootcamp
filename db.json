@@ -78,5 +78,50 @@
       "image": "https://picsum.photos/809/1000"
     }
   ],
-  "orders": []
+  "orders": [
+    [
+      {
+        "id": 1,
+        "title": "First product",
+        "image": "https://picsum.photos/800/1000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+        "price": 300,
+        "quantity": 3
+      },
+      {
+        "id": 2,
+        "title": "Second Product",
+        "image": "https://picsum.photos/801/1000",
+        "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+        "price": 200,
+        "quantity": 5
+      },
+      {
+        "id": 3,
+        "title": "Third Product",
+        "image": "https://picsum.photos/802/1000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloribus eius eveniet fugiat illum nesciunt, numquam perferendis quia, quibusdam quo quos sed sint,",
+        "price": 150,
+        "quantity": 2
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "title": "First product",
+        "image": "https://picsum.photos/800/1000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+        "price": 300,
+        "quantity": 4
+      },
+      {
+        "id": 2,
+        "title": "Second Product",
+        "image": "https://picsum.photos/801/1000",
+        "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+        "price": 200,
+        "quantity": 3
+      }
+    ]
+  ]
 }

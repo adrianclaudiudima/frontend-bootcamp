@@ -1,9 +1,11 @@
 export interface DomainStatus<T> {
   domain: T;
-  requestStatus: {
-    errorMessage: string,
-    status: Status,
-  };
+  requestStatus: RequestStatus;
+}
+
+export interface RequestStatus {
+  errorMessage: string,
+  status: Status,
 }
 
 export enum Status {
@@ -13,3 +15,7 @@ export enum Status {
   FAILED = 'FAILED'
 }
 
+export const initialRequestStatus: RequestStatus = {
+  errorMessage: undefined,
+  status: Status.NEW
+};

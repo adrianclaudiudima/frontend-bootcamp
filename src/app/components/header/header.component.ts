@@ -5,6 +5,9 @@ import {MockAuthService} from '../../services/mock-auth.service';
 import {Router} from '@angular/router';
 import {FavoriteOverlayService} from '../../services/overlay/favorite-overlay.service';
 import {CartOverlayService} from '../../services/overlay/cart-overlay.service';
+import {AppState} from '../../store';
+import {select, Store} from '@ngrx/store';
+import * as fromCart from './../../store/cart';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   favoriteCount = 0;
   favoriteSubscription: Subscription;
+  public cartCount$: Observable<number>;
 
   userLoggedIn: Observable<boolean>;
 
@@ -22,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private favoriteService: FavoriteService,
     private mockAuth: MockAuthService,
     private router: Router,
+    private store: Store<AppState>,
     private favoriteOverlay: FavoriteOverlayService,
     private cartOverlayService: CartOverlayService) {
 
@@ -31,6 +36,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.favoriteSubscription = this.favoriteService.favoriteProducts$.subscribe(favoriteProducts => {
       this.favoriteCount = favoriteProducts.length;
     });
+    this.cartCount$ = this.store.pipe(
+      select(fromCart.selectProductsTotalQuantity)
+    );
     this.userLoggedIn = this.mockAuth.isUserLoggedIn$;
   }
 

@@ -4,6 +4,7 @@ import {ProductListComponent} from './components/product-list/product-list.compo
 import {ProductFavoriteDetailsComponent} from './components/overlay/product-favorite-details/product-favorite-details.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
 import {ProductAdministrationGuard} from './components/product-administration/product-administration.guard';
+import {OrdersComponent} from './components/order-list/orders.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,12 @@ const routes: Routes = [
   {
     path: 'favorites',
     component: ProductFavoriteDetailsComponent
-  }, {
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
+  {
     path: 'product-administration',
     loadChildren: () => import('./modules/product-administration/product-administration.module').then(m => m.ProductAdministrationModule),
     canLoad: [ProductAdministrationGuard]
