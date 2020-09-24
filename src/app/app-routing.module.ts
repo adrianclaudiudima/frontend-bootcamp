@@ -5,6 +5,7 @@ import {ProductFavoriteDetailsComponent} from './components/overlay/product-favo
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
 import {ProductAdministrationGuard} from './components/product-administration/product-administration.guard';
 import {OrdersComponent} from './components/order-list/orders.component';
+import {CheckoutComponent} from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
   },
   {
     path: 'product-administration',

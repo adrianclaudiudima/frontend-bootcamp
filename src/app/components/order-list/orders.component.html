@@ -1,12 +1,15 @@
 <ng-container *ngIf="orders$ | async as orders">
   <div class="mat-title">Your orders:</div>
   <ng-container *ngIf="orders.length > 0 else empty">
-    <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutGap="10px">
       <div *ngFor="let order of orders; let i=index">
-        <div class="mat-h3">Order no: {{(orderIds$ | async)[i]}}</div>
-        <div *ngFor="let item of order">
-          <app-cart-product-item [item]="item" [type]="productItemType.ORDER"></app-cart-product-item>
-        </div>
+        <div class="mat-h3">Order no: {{order.id}}</div>
+        <div class="mat-h3">First name: {{order.firstName}}</div>
+        <div class="mat-h3">Last name: {{order.lastName}}</div>
+        <div class="mat-h3">Email: {{order.email}}</div>
+        <div class="mat-h3">Address: {{order.address}}</div>
+        <div class="mat-h3">Phone: {{order.phone}}</div>
+        <div class="mat-h3">Total number of products: {{getNoOfProductsFromOrder(order.id) | async}}</div>
         <mat-divider></mat-divider>
       </div>
     </div>

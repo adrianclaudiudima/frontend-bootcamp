@@ -38,10 +38,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {CartProductItemComponent} from './components/overlay/cart-details-overlay/cart-product-item/cart-product-item.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
-import {CartEffects} from './store/cart/cart.effects';
 import {OrdersService} from './services/orders.service';
 import {OrdersComponent} from './components/order-list/orders.component';
 import {OrdersEffects} from './store/orders/orders.effects';
+import {CheckoutComponent} from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import {OrdersEffects} from './store/orders/orders.effects';
     LoadingOverlayComponent,
     CartDetailsOverlayComponent,
     CartProductItemComponent,
-    OrdersComponent
+    OrdersComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +70,7 @@ import {OrdersEffects} from './store/orders/orders.effects';
     FlexLayoutModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([CartEffects, OrdersEffects]),
+    EffectsModule.forRoot([OrdersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: !environment.production })
   ],
   providers: [

@@ -1,0 +1,68 @@
+<ng-container *ngIf="cartProducts$ | async as cartProducts">
+  <ng-container *ngIf="cartProducts.length > 0 else empty">
+    <div class="checkout-container" fxLayout="row" fxLayoutGap="20px">
+      <div class="products-container" fxLayout="column" fxLayoutGap="10px">
+        <div class="mat-title">Ordered products:</div>
+        <div *ngFor="let product of cartProducts">
+          <app-cart-product-item [item]="product" [type]="productItemType.CART"></app-cart-product-item>
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="form-container">
+        <div class="mat-title">Checkout order</div>
+        <form [formGroup]="checkoutForm" (submit)="submit()" fxLayout="column" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput
+                   type="text"
+                   [formControlName]="'firstName'">
+            <mat-error *ngIf="checkoutForm.get('firstName').hasError('required')">Please enter first name</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput
+                   type="text"
+                   [formControlName]="'lastName'">
+            <mat-error *ngIf="checkoutForm.get('lastName').hasError('required')">Please enter last name</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput
+                   type="text"
+                   [formControlName]="'email'">
+            <mat-error *ngIf="checkoutForm.get('email').hasError('required')">Please enter email</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput
+                   type="text"
+                   [formControlName]="'address'">
+            <mat-error *ngIf="checkoutForm.get('address').hasError('required')">Please enter address</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput
+                   type="text"
+                   [formControlName]="'phone'">
+            <mat-error *ngIf="checkoutForm.get('phone').hasError('required')">Please enter phone</mat-error>
+          </mat-form-field>
+          <button mat-raised-button
+                  color="accent"
+                  type="submit"
+                  [disabled]="!checkoutForm.valid">
+            Checkout
+          </button>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #empty>
+  <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%;height: 200px; text-align: center">
+    <div>
+      <div class="mat-title">Missing products</div>
+      <div class="mat-body-2">Please add products to cart...</div>
+    </div>
+  </div>
+</ng-template>
