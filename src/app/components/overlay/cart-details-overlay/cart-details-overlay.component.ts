@@ -6,11 +6,11 @@ import {cartDetailsLeft, cartDetailsRight} from './cart-details-overlay.animatio
 import {AnimationEvent} from '@angular/animations';
 import {AppState} from '../../../store';
 import {select, Store} from '@ngrx/store';
-import {CartProduct} from '../../../model/product';
-import {map, take} from 'rxjs/operators';
-import {PlaceOrderFromCartAction} from '../../../store/cart/cart.actions';
-import * as fromCart from './../../../store/cart';
+import {ProductWithQuantity} from '../../../model/product';
+import {map} from 'rxjs/operators';
 import {ProductItemType} from './cart-product-item/product-item-type.enum';
+import {Router} from '@angular/router';
+import * as fromCart from './../../../store/cart';
 
 @Component({
   selector: 'app-cart-overlay',
@@ -21,12 +21,13 @@ import {ProductItemType} from './cart-product-item/product-item-type.enum';
 export class CartDetailsOverlayComponent implements OnInit {
 
   shown = true;
-  cartProducts$: Observable<CartProduct[]>;
+  cartProducts$: Observable<ProductWithQuantity[]>;
   cartTotalPrice$: Observable<number>;
   productItemType: typeof ProductItemType = ProductItemType;
 
   constructor(private overlayRef: OverlayRef,
               private store: Store<AppState>,
+              private router: Router,
               @Inject(CART_DISPOSE_NOTIFIER) private notificationSubject: ReplaySubject<any>) {
   }
 
@@ -35,7 +36,7 @@ export class CartDetailsOverlayComponent implements OnInit {
       select(fromCart.selectProducts)
     );
     this.cartTotalPrice$ = this.cartProducts$.pipe(
-      map((cartProducts: Array<CartProduct>) => {
+      map((cartProducts: Array<ProductWithQuantity>) => {
         return cartProducts.map(cartProduct => cartProduct.price * cartProduct.quantity)
           .reduce((v1, v2) => v1 + v2);
       })
@@ -57,11 +58,9 @@ export class CartDetailsOverlayComponent implements OnInit {
     this.notificationSubject.complete();
   }
 
-  placeOrder(): void {
+  proceedToCheckout(): void {
     this.closeCartOverlay();
-    this.cartProducts$.pipe(take(1)).subscribe((cartProducts: Array<CartProduct>) => {
-      this.store.dispatch(new PlaceOrderFromCartAction(cartProducts));
-    })
+    this.router.navigate(['checkout']);
   }
 }
 

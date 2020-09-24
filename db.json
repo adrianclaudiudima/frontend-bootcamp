@@ -79,5 +79,99 @@
     }
   ],
   "orders": [
+    {
+      "firstName": "Bogdan",
+      "lastName": "Iures",
+      "email": "test@test.com",
+      "address": "sdgsdg",
+      "phone": "124124",
+      "products": [
+        {
+          "id": 1,
+          "title": "First product",
+          "image": "https://picsum.photos/800/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+          "price": 300,
+          "quantity": 4
+        }
+      ],
+      "id": 1
+    },
+    {
+      "firstName": "235235",
+      "lastName": "Iures",
+      "email": "bogdan.iures@gmail.com",
+      "address": "sdgsd",
+      "phone": "124124",
+      "products": [
+        {
+          "id": 1,
+          "title": "First product",
+          "image": "https://picsum.photos/800/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+          "price": 300,
+          "quantity": 8
+        }
+      ],
+      "id": 2
+    },
+    {
+      "firstName": "Bogdan",
+      "lastName": "Iures",
+      "email": "test@test.com",
+      "address": "sdgsdg",
+      "phone": "235235",
+      "products": [
+        {
+          "id": 1,
+          "title": "First product",
+          "image": "https://picsum.photos/800/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+          "price": 300,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "title": "Second Product",
+          "image": "https://picsum.photos/801/1000",
+          "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+          "price": 200,
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "title": "Third Product",
+          "image": "https://picsum.photos/802/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloribus eius eveniet fugiat illum nesciunt, numquam perferendis quia, quibusdam quo quos sed sint,",
+          "price": 150,
+          "quantity": 2
+        },
+        {
+          "id": 4,
+          "title": "Forth Product",
+          "image": "https://picsum.photos/803/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores blanditiis eos, id pariatur quod repellat unde veritatis vitae.",
+          "price": 150,
+          "quantity": 2
+        },
+        {
+          "id": 6,
+          "title": "Sixth product",
+          "image": "https://picsum.photos/805/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, blanditiis consectetur ea illo ipsam possimus quae reiciendis voluptatum.",
+          "price": 220,
+          "quantity": 2
+        },
+        {
+          "id": 7,
+          "title": "Seventh Product",
+          "image": "https://picsum.photos/806/1000",
+          "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+          "price": 190,
+          "quantity": 2
+        }
+      ],
+      "id": 3
+    }
   ]
 }

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../store';
-import * as fromOrders from './../../store/orders';
 import {Observable} from 'rxjs';
-import {CartProduct} from '../../model/product';
 import {filter, mergeMap, take} from 'rxjs/operators';
 import {Status} from '../../modules/shared/models/DomainStatus';
 import {ProductItemType} from '../overlay/cart-details-overlay/cart-product-item/product-item-type.enum';
+import * as fromOrders from './../../store/orders';
+import {Order} from '../../model/order';
 
 @Component({
   selector: 'app-orders',
@@ -15,8 +15,8 @@ import {ProductItemType} from '../overlay/cart-details-overlay/cart-product-item
 })
 export class OrdersComponent implements OnInit {
 
-  public orders$: Observable<Array<Array<CartProduct>>>;
-  public orderIds$: Observable<Array<number | string>>
+  public orders$: Observable<Array<Order>>;
+  public orderIds$: Observable<Array<number | string>>;
   public productItemType: typeof ProductItemType = ProductItemType;
 
   constructor(private store: Store<AppState>) {
@@ -39,6 +39,12 @@ export class OrdersComponent implements OnInit {
       mergeMap(() => this.store.pipe(
         select(fromOrders.selectAllOrdersIds))
       )
+    );
+  }
+
+  public getNoOfProductsFromOrder(orderId: number): Observable<number> {
+    return this.store.pipe(
+      select(fromOrders.selectNoOfProductsFromOrder, orderId)
     );
   }
 

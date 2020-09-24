@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CartProduct} from '../../../../model/product';
+import {ProductWithQuantity} from '../../../../model/product';
 import {FormControl} from '@angular/forms';
 import {MatSelectChange} from '@angular/material/select';
 import {RemoveProductFromCartAction, UpdateProductFromCartAction} from '../../../../store/cart/cart.actions';
@@ -15,7 +15,7 @@ import {ProductItemType} from './product-item-type.enum';
 export class CartProductItemComponent implements OnInit {
 
   @Input()
-  item: CartProduct;
+  item: ProductWithQuantity;
   @Input()
   type: ProductItemType;
   productItemType: typeof ProductItemType = ProductItemType;
@@ -37,7 +37,7 @@ export class CartProductItemComponent implements OnInit {
     if (event.value === 0) {
       this.removeProduct()
     } else {
-      const updatedProduct: CartProduct = { ...this.item, quantity: event.value };
+      const updatedProduct: ProductWithQuantity = { ...this.item, quantity: event.value };
       this.store.dispatch(new UpdateProductFromCartAction(updatedProduct));
     }
   }

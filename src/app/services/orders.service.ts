@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {CartProduct} from '../model/product';
 import {Observable} from 'rxjs';
+import {Order} from '../model/order';
 
 @Injectable()
 export class OrdersService {
@@ -12,12 +12,12 @@ export class OrdersService {
   constructor(private http: HttpClient) {
   }
 
-  getOrders(): Observable<Array<Array<CartProduct>>> {
-    return this.http.get<Array<Array<CartProduct>>>(this.serviceHostUrl + '/orders');
+  getOrders(): Observable<Array<Order>> {
+    return this.http.get<Array<Order>>(this.serviceHostUrl + '/orders');
   }
 
-  createOrder(orderedProducts: Array<CartProduct>): Observable<Array<CartProduct>> {
-    return this.http.post<Array<CartProduct>>(this.serviceHostUrl + '/orders', orderedProducts);
+  createOrder(orderedProducts: Order): Observable<Order> {
+    return this.http.post<Order>(this.serviceHostUrl + '/orders', orderedProducts);
   }
 
 }

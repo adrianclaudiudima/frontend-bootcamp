@@ -6,6 +6,7 @@ export interface Product {
   price: number;
 }
 
-export interface CartProduct extends Product {
+export interface ProductWithQuantity extends Product {
   quantity: number;
+  orderId?: number;
 }
