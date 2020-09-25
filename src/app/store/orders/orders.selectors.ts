@@ -22,7 +22,7 @@ export const selectAllOrders = createSelector(
   ordersAdapter.getSelectors().selectAll
 );
 export const selectAllOrdersIds = createSelector(
-  selectOrdersState,
+  selectOrdersSubState,
   ordersAdapter.getSelectors().selectIds
 );
 export const selectAllOrderProducts = createSelector(
@@ -38,6 +38,6 @@ export const selectNoOfProductsFromOrder = createSelector(
   (orderProducts: ProductWithQuantity[], orderId: number) => {
     return orderProducts.filter((product: ProductWithQuantity) => product.orderId === orderId)
       .map((product: ProductWithQuantity) => product.quantity)
-      .reduce((v1,v2) => v1 + v2)
+      .reduce((v1, v2) => v1 + v2);
   }
 );
