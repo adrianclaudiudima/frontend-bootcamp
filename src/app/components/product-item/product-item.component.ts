@@ -8,7 +8,7 @@ import {ProductsService} from '../../services/products.service';
 import {FavoriteOverlayService} from '../../services/overlay/favorite-overlay.service';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store';
-import {AddProductToCartAction} from '../../store/cart/cart.actions';
+import {AddProductToCartAction} from '../../store/cart';
 
 @Component({
   selector: 'app-product-item',
@@ -63,12 +63,6 @@ export class ProductItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.isAtFavoriteSubscription.unsubscribe();
-  }
-
-
-  showFavoriteWidget(element) {
-    this.favoriteOverlayService.showFavoriteOverlay(element);
-
   }
 
   addProductToCart(): void {

@@ -1,0 +1,67 @@
+@import "~@angular/material/theming";
+
+.product-orders {
+
+  &-xs {
+    .product-orders__order-item {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 20px;
+      width: calc(100% - 20px);
+    }
+  }
+
+  &-sm {
+    .product-orders__order-item {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 20px;
+      width: calc(50% - 40px);
+    }
+  }
+
+  &-md {
+    .product-orders__order-item {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 20px;
+      width: calc(33.3333% - 40px);
+    }
+  }
+
+  &-lg {
+    .product-orders__order-item {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 20px;
+      width: calc(25% - 40px);
+    }
+  }
+
+
+  &__order-item {
+
+
+    &:hover {
+      @include mat-elevation(5);
+      @include mat-elevation-transition();
+    }
+
+    border-radius: 8px;
+    padding: 10px;
+
+
+    &__details {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .mat-h3 {
+      margin-bottom: 2px;
+
+    }
+  }
+
+
+}

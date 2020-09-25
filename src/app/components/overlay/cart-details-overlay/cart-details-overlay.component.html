@@ -11,12 +11,12 @@
     </div>
     <ng-container *ngIf="cartProducts$ | async as cartProducts">
       <ng-container *ngIf="cartProducts.length > 0 else empty">
-        <div fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="column" fxLayoutGap="10px" style="margin-top: 20px;">
           <div *ngFor="let item of cartProducts">
             <app-cart-product-item [item]="item" [type]="productItemType.CART"></app-cart-product-item>
             <mat-divider></mat-divider>
           </div>
-          <div fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="end" fxLayoutGap="10px">
+          <div fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="end" fxLayoutGap="20px">
             <div>Total price: {{cartTotalPrice$ | async}}</div>
             <button mat-stroked-button color='accent' (click)="proceedToCheckout()">Proceed to Checkout</button>
           </div>

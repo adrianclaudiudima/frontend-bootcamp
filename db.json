@@ -172,6 +172,32 @@
         }
       ],
       "id": 3
+    },
+    {
+      "firstName": "Adrian",
+      "lastName": "Dima",
+      "email": "em@em.com",
+      "address": "Adress",
+      "phone": "30000",
+      "products": [
+        {
+          "id": 3,
+          "title": "Third Product",
+          "image": "https://picsum.photos/802/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum doloribus eius eveniet fugiat illum nesciunt, numquam perferendis quia, quibusdam quo quos sed sint,",
+          "price": 150,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "title": "Forth Product",
+          "image": "https://picsum.photos/803/1000",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores blanditiis eos, id pariatur quod repellat unde veritatis vitae.",
+          "price": 150,
+          "quantity": 1
+        }
+      ],
+      "id": 4
     }
   ]
 }

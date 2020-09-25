@@ -1,20 +1,32 @@
-<ng-container *ngIf="orders$ | async as orders">
-  <div class="mat-title">Your orders:</div>
-  <ng-container *ngIf="orders.length > 0 else empty">
-    <div fxLayout="row" fxLayoutGap="10px">
-      <div *ngFor="let order of orders; let i=index">
-        <div class="mat-h3">Order no: {{order.id}}</div>
-        <div class="mat-h3">First name: {{order.firstName}}</div>
-        <div class="mat-h3">Last name: {{order.lastName}}</div>
-        <div class="mat-h3">Email: {{order.email}}</div>
-        <div class="mat-h3">Address: {{order.address}}</div>
-        <div class="mat-h3">Phone: {{order.phone}}</div>
-        <div class="mat-h3">Total number of products: {{getNoOfProductsFromOrder(order.id) | async}}</div>
-        <mat-divider></mat-divider>
-      </div>
-    </div>
-  </ng-container>
-</ng-container>
+<div class="product-orders">
+  <div
+    ngClass.xs="product-orders-xs"
+    ngClass.sm="product-orders-sm"
+    ngClass.md="product-orders-md"
+    ngClass.lg="product-orders-lg"
+    ngClass.xl="product-orders-lg"
+  >
+    <ng-container *ngIf="orders$ | async as orders">
+      <div class="mat-title">Your orders:</div>
+      <ng-container *ngIf="orders.length > 0 else empty">
+        <div fxLayout="row wrap">
+          <div *ngFor="let order of orders; let i=index" class="product-orders__order-item mat-elevation-z2">
+            <div class="mat-h3">Order no: {{order.id}}</div>
+            <div class="mat-h3">First name: {{order.firstName}}</div>
+            <div class="mat-h3">Last name: {{order.lastName}}</div>
+            <div class="mat-h3">Email: {{order.email}}</div>
+            <div class="mat-h3">Address: {{order.address}}</div>
+            <div class="mat-h3">Phone: {{order.phone}}</div>
+            <div class="mat-h3">Total number of products: {{getNoOfProductsFromOrder(order.id) | async}}</div>
+            <button class="product-orders__order-item__details" mat-stroked-button color="accent">Check order details</button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+</div>
+
 <ng-template #empty>
   <div fxLayout="row" fxLayoutAlign="center center" style="width: 100%;height: 200px; text-align: center">
     <div>

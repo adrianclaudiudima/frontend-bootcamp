@@ -21,14 +21,11 @@
     <div class="mat-body-1 product-item__content__description">{{product.description}}</div>
     <div class="product-item__content__actions" fxLayout="row" fxLayoutAlign="center center">
       <button mat-stroked-button color="accent" matTooltip="Add product to your cart list"
-      (click)="addProductToCart()">
+              (click)="addProductToCart()">
         <mat-icon>shopping_cart</mat-icon>
         <span>ADD TO CART</span></button>
     </div>
   </div>
-  <button cdkOverlayOrigin
-          #trigger="cdkOverlayOrigin" (click)="showFavoriteWidget(trigger)">
-    Show favorite widget
-  </button>
+
 </div>
 

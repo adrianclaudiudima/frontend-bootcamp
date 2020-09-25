@@ -1,7 +1,7 @@
 <ng-container *ngIf="cartProducts$ | async as cartProducts">
   <ng-container *ngIf="cartProducts.length > 0 else empty">
     <div class="checkout-container" fxLayout="row" fxLayoutGap="20px">
-      <div class="products-container" fxLayout="column" fxLayoutGap="10px">
+      <div class="products-container" fxFlex="100" fxLayout="column" fxLayoutGap="10px">
         <div class="mat-title">Ordered products:</div>
         <div *ngFor="let product of cartProducts">
           <app-cart-product-item [item]="product" [type]="productItemType.CART"></app-cart-product-item>
@@ -9,7 +9,7 @@
         </div>
       </div>
       <mat-divider></mat-divider>
-      <div class="form-container">
+      <div class="form-container" fxFlex="300px">
         <div class="mat-title">Checkout order</div>
         <form [formGroup]="checkoutForm" (submit)="submit()" fxLayout="column" fxLayoutGap="10px">
           <mat-form-field appearance="outline">
