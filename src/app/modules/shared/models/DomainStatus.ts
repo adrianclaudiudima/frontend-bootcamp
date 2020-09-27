@@ -4,8 +4,8 @@ export interface DomainStatus<T> {
 }
 
 export interface RequestStatus {
-  errorMessage: string,
-  status: Status,
+  errorMessage: string;
+  status: Status;
 }
 
 export enum Status {

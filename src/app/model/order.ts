@@ -7,5 +7,12 @@ export interface Order {
   email: string;
   address: string;
   phone: string;
-  products: Array<ProductWithQuantity | number>
+  products: Array<ProductWithQuantity | number>;
+  orderStatus?: OrderStatus;
+}
+
+export enum OrderStatus {
+  PENDING = 'PENDING',
+  COMPLETED = 'COMPLETED',
+  REJECTED = 'REJECTED'
 }

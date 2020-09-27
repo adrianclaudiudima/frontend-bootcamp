@@ -11,6 +11,13 @@ import {CreateProductComponent} from './components/create-product/create-product
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductAdministrationService} from './services/product-administration.service';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {productAdministrationOrderReducer} from './store/product-administration.reducer';
+import {ProductOrdersService} from './services/product-orders.service';
+import {ProductAdministrationEffects} from './store/product-administration.effects';
+import {EditOrderComponent} from './components/edit-order/edit-order.component';
+import {PortalModule} from '@angular/cdk/portal';
 
 
 @NgModule({
@@ -19,18 +26,23 @@ import {ProductAdministrationService} from './services/product-administration.se
     ProductAdministrationComponent,
     ProductListAdministrationComponent,
     OrderListComponent,
+    EditOrderComponent
   ],
   imports: [
+    PortalModule,
     CommonModule,
     SharedModule,
     HttpClientModule,
+    StoreModule.forFeature('productAdministration', productAdministrationOrderReducer),
+    EffectsModule.forFeature([ProductAdministrationEffects]),
     FlexLayoutModule,
     ReactiveFormsModule,
     MaterialModule,
     ProductAdministrationRoutingModule,
   ],
   providers: [
-    ProductAdministrationService
+    ProductAdministrationService,
+    ProductOrdersService
   ],
   exports: []
 })

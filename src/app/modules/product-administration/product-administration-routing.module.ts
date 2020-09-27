@@ -6,6 +6,7 @@ import {ProductListAdministrationComponent} from './components/product-list-admi
 import {OrderListComponent} from './components/order-list/order-list.component';
 import {RouterModule} from '@angular/router';
 import {CreateProductComponent} from './components/create-product/create-product.component';
+import {EditOrderComponent} from './components/edit-order/edit-order.component';
 
 
 @NgModule({
@@ -22,11 +23,15 @@ import {CreateProductComponent} from './components/create-product/create-product
         }, {
           path: 'orders',
           component: OrderListComponent
-        }, {
+        },
+        {
+          path: 'orders/:id',
+          component: EditOrderComponent
+        },
+        {
           path: '',
           component: CreateProductComponent
-        }
-      ]
+        }]
     }
 
   ])],

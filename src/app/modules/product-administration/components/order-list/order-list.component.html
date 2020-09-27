@@ -1,1 +1,11 @@
 <div class="mat-title">Oders</div>
+
+<div fxLayout="row wrap" fxLayoutGap="20px">
+  <div fxFlex="200px" style="padding: 10px;border: 6px" *ngFor="let order of orderList$ | async" class="mat-body-2 mat-elevation-z2">
+    <div>Order no :{{order.id}}</div>
+    <div>First name:{{order.firstName}}</div>
+    <div>First last name:{{order.lastName}}</div>
+    <button style="width: 100%;margin-top: 10px;" mat-stroked-button color="accent" (click)="editOrder(order.id)">EDIT ORDER</button>
+  </div>
+</div>
+

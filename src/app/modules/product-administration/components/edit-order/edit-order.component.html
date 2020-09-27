@@ -1,0 +1,14 @@
+<div>
+  <div class="mat-title">Edit order</div>
+
+
+  <div style="padding: 10px;border: 6px" *ngIf="order$ | async as order" class="mat-body-2 mat-elevation-z2">
+    <div>Order no :{{order.id}}</div>
+    <div>First name:{{order.firstName}}</div>
+    <div>First last name:{{order.lastName}}</div>
+    <div *ngIf="order?.orderStatus">{{order.orderStatus}}</div>
+    <button mat-raised-button color="accent" (click)="acceptOrder(order)">ACCEPT ORDER</button>
+    <button mat-stroked-button color="primary" (click)="rejectOrder(order)">REJECT ORDER</button>
+  </div>
+
+</div>
