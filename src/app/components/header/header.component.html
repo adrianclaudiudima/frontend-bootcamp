@@ -1,23 +1,31 @@
-<mat-toolbar class="mat-elevation-z4 toolbar" color="primary"
-             fxLayout="row"
-             fxLayoutAlign="start center">
-
-  <div class="toolbar__title" fxLayout="row" fxLayoutAlign="start center" routerLink="/" style="cursor: pointer">
+<mat-toolbar
+  class="mat-elevation-z4 toolbar"
+  color="primary"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+>
+  <div
+    class="toolbar__title"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    routerLink="/"
+    style="cursor: pointer"
+  >
     <mat-icon>store</mat-icon>
     <div>EShop</div>
   </div>
 
   <span class="toolbar__spacer"></span>
 
-
   <mat-menu #menu="matMenu">
-    <ng-container *ngIf="userLoggedIn | async as user else logout">
-      <button mat-menu-item
-              routerLink="orders">Orders
-      </button>
-      <button mat-menu-item
-              routerLink="product-administration"
-              routerLinkActive="class-when-product-administration-is-active">Product Administration
+    <ng-container *ngIf="userLoggedIn | async as user; else logout">
+      <button mat-menu-item routerLink="orders">Orders</button>
+      <button
+        mat-menu-item
+        routerLink="product-administration"
+        routerLinkActive="class-when-product-administration-is-active"
+      >
+        Product Administration
       </button>
       <button mat-menu-item (click)="doLogout()">Logout</button>
     </ng-container>
@@ -25,7 +33,6 @@
       <button mat-menu-item (click)="doLogin()">Login</button>
     </ng-template>
   </mat-menu>
-
 
   <div class="toolbar__actions" fxLayout="row" fxLayoutGap="10px">
     <button
@@ -35,14 +42,42 @@
       [matBadge]="favoriteCount"
       matBadgeColor="accent"
       mat-icon-button
-      aria-label="Favorite information">
+      aria-label="Favorite information"
+    >
       <mat-icon>favorite</mat-icon>
     </button>
-    <button (click)="openCartOverlay()"
-            [matBadge]="cartCount$ | async"
-            matBadgeColor="accent"
-            mat-icon-button
-            aria-label="Cart information">
+
+    <button
+      cdkOverlayOrigin
+      #trigger="cdkOverlayOrigin"
+      (click)="showWishlistWidget(trigger)"
+      matTooltip="Overlay Wishlist products without animation"
+      [matBadge]="wishlistCount"
+      matBadgeColor="accent"
+      mat-icon-button
+      aria-label="Wishlist products overlay without animation"
+    >
+      <mat-icon>work_outline</mat-icon>
+    </button>
+
+    <button
+      (click)="openWishlistOverlay()"
+      matTooltip="Overlay Wishlist products with animation"
+      [matBadge]="wishlistCount"
+      matBadgeColor="accent"
+      mat-icon-button
+      aria-label="Wishlist products overlay with animation"
+    >
+      <mat-icon>work</mat-icon>
+    </button>
+
+    <button
+      (click)="openCartOverlay()"
+      [matBadge]="cartCount$ | async"
+      matBadgeColor="accent"
+      mat-icon-button
+      aria-label="Cart information"
+    >
       <mat-icon>shopping_basket</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">

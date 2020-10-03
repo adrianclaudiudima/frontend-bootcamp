@@ -1,16 +1,16 @@
 import { Injectable, Injector } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { ProductFavoriteDetailsComponent } from '../../components/overlay/product-favorite-details/product-favorite-details.component';
+import { WishlistProductsDetailsComponent } from '../../components/overlay/wishlist-products-details/wishlist-products-details.component';
 import { take } from 'rxjs/operators';
 import { ReplaySubject, Subject } from 'rxjs';
 
 @Injectable()
-export class FavoriteOverlayService {
+export class WishlistOverlayService {
   constructor(private overlayService: Overlay, private injector: Injector) {}
 
-  showFavoriteOverlay(element): void {
-    console.log(element);
+  showWishlistOverlay(element): void {
+    // console.log(element);
     const overlayRef: OverlayRef = this.overlayService.create({
       width: '630px',
       height: '300px',
@@ -42,9 +42,9 @@ export class FavoriteOverlayService {
       injectionTokens
     );
 
-    const componentPortal: ComponentPortal<ProductFavoriteDetailsComponent> = new ComponentPortal<
-      ProductFavoriteDetailsComponent
-    >(ProductFavoriteDetailsComponent, null, portalInjectionTokens);
+    const componentPortal: ComponentPortal<WishlistProductsDetailsComponent> = new ComponentPortal<
+      WishlistProductsDetailsComponent
+    >(WishlistProductsDetailsComponent, null, portalInjectionTokens);
 
     notificationSubject
       .asObservable()

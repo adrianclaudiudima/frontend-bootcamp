@@ -1,18 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Product} from '../model/product';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Product } from '../model/product';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class FavoriteService {
-
   private favoriteProducts: Array<Product> = [];
-  private favoriteSubject: Subject<Array<Product>> = new BehaviorSubject<Array<Product>>([]);
+  private favoriteSubject: Subject<Array<Product>> = new BehaviorSubject<
+    Array<Product>
+  >([]);
   public favoriteProducts$ = this.favoriteSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor() {}
 
   addProductToFavorite(product: Product): void {
     this.favoriteProducts.push(product);
@@ -24,7 +23,9 @@ export class FavoriteService {
   }
 
   removeProductFromFavorite(id: number): void {
-    this.favoriteProducts = this.favoriteProducts.filter(product => product.id !== id);
+    this.favoriteProducts = this.favoriteProducts.filter(
+      (product) => product.id !== id
+    );
     this.favoriteSubject.next(this.favoriteProducts);
   }
 
@@ -35,8 +36,8 @@ export class FavoriteService {
 
   isProductAtFavorite(productId): Observable<boolean> {
     return this.favoriteProducts$.pipe(
-      map(allFavoriteProducts => {
-        return !!allFavoriteProducts.find(pf => pf.id === productId);
+      map((allFavoriteProducts) => {
+        return !!allFavoriteProducts.find((pf) => pf.id === productId);
       })
     );
   }

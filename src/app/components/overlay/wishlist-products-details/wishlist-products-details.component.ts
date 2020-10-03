@@ -5,8 +5,9 @@ import { map, switchMap, tap, take } from 'rxjs/operators';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { CartService } from '../../../services/cart.service';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { WishlistStateService } from '../../../services/wishlist-state.service';
+
 import { ProductsStateService } from '../../../services/products-state.service';
+import { WishlistStateService } from '../../../services/wishlist-state.service';
 
 import {
   DomainStatus,
@@ -14,20 +15,19 @@ import {
 } from '../../../modules/shared/models/DomainStatus';
 
 @Component({
-  selector: 'app-favorite-details',
-  templateUrl: 'product-favorite-details.component.html',
-  styleUrls: ['product-favorite-details.component.scss'],
+  selector: 'app-wishlist-products-details',
+  templateUrl: './wishlist-products-details.component.html',
+  styleUrls: ['./wishlist-products-details.component.scss'],
 })
-export class ProductFavoriteDetailsComponent implements OnInit, OnDestroy {
-  favoriteProducts: Array<Product> = [];
-  favoriteProducts$: Observable<Array<Product>>;
+export class WishlistProductsDetailsComponent implements OnInit, OnDestroy {
   s = new Subject();
   showProductFavorite = false;
   requestStatuses: typeof Status = Status;
-  domainStatusWishlistProducts: DomainStatus<Array<Product>>;
   domainStatusProducts: DomainStatus<Array<Product>>;
+  domainStatusWishlistProducts: DomainStatus<Array<Product>>;
+  favoriteProducts: Array<Product> = [];
 
-  productsFavorite: Array<Product> = [];
+  // productsFavorite: Array<Product> = [];
   hasError: boolean;
   subscriptions: Subscription[] = [];
 
@@ -40,16 +40,14 @@ export class ProductFavoriteDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loadWishlistProducts();
+
     this.subscriptions.push(
       this.wishlistServiceState.wishlistDomainStatus$.subscribe(
         (wishlistDomainStatus: DomainStatus<Array<Product>>) => {
           this.domainStatusWishlistProducts = wishlistDomainStatus;
         }
       )
-    );
-
-    this.favoriteProducts$ = this.favoriteService.favoriteProducts$.pipe(
-      tap((p) => (this.favoriteProducts = p))
     );
   }
 
@@ -89,21 +87,23 @@ export class ProductFavoriteDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  moveToWishlist(productToRemove: Product): void {
-    this.loadWishlistProducts();
-
+  moveToFavorite(productToRemove: Product) {
     this.wishlistServiceState
-      .addWishlistProductsAndHandleResponse(productToRemove)
+      .removeWishlistProductsAndHandleResponse(productToRemove.id)
       .pipe(take(1))
-      .subscribe((x) => {
+      .subscribe((x: any) => {
         if (!x) {
-          this.favoriteService.removeProductFromFavorite(productToRemove.id);
+          this.favoriteService.addProductToFavorite(productToRemove);
         }
+        this.loadAllProducts();
       });
   }
 
   removeProduct(productToRemove: Product): void {
-    this.favoriteService.removeProductFromFavorite(productToRemove.id);
+    this.wishlistServiceState
+      .removeWishlistProductsAndHandleResponse(productToRemove.id)
+      .pipe(take(1))
+      .subscribe();
   }
 
   removeAllExceptThis(item: Product): any {

@@ -203,5 +203,14 @@
       "id": 4,
       "orderStatus": "COMPLETED"
     }
+  ],
+  "wishlist": [
+    {
+      "id": 2,
+      "title": "Second Product",
+      "image": "https://picsum.photos/801/1000",
+      "description": "Alias, doloremque est exercitationem facilis minima perspiciatis tempora ut voluptatem? Aliquid, deserunt!",
+      "price": 200
+    }
   ]
 }

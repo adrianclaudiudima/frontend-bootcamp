@@ -2,6 +2,11 @@
   width: inherit;
   position: relative;
 
+  &__wishlist {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
 
   &__favorite {
     position: absolute;
@@ -37,5 +42,4 @@
       }
     }
   }
-
 }

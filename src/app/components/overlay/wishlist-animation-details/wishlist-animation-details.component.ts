@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
 import { FavoriteService } from '../../../services/favorite.service';
 import { Product } from '../../../model/product';
+import { Observable, Subject, ReplaySubject, Subscription } from 'rxjs';
 import { map, switchMap, tap, take } from 'rxjs/operators';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { CartService } from '../../../services/cart.service';
-import { OverlayRef } from '@angular/cdk/overlay';
+
 import { WishlistStateService } from '../../../services/wishlist-state.service';
 import { ProductsStateService } from '../../../services/products-state.service';
 
@@ -12,44 +11,63 @@ import {
   DomainStatus,
   Status,
 } from '../../../modules/shared/models/DomainStatus';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { WISHLIST_DISPOSE_NOTIFIER } from '../../../services/overlay/wishlist-overlay.model';
+import {
+  wishlistDetailsLeft,
+  wishlistDetailsRight,
+} from './wishlist-details-overlay.animation';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
-  selector: 'app-favorite-details',
-  templateUrl: 'product-favorite-details.component.html',
-  styleUrls: ['product-favorite-details.component.scss'],
+  selector: 'app-wishlist-animation-details',
+  templateUrl: './wishlist-animation-details.component.html',
+  styleUrls: ['./wishlist-animation-details.component.scss'],
+  animations: [wishlistDetailsLeft, wishlistDetailsRight],
 })
-export class ProductFavoriteDetailsComponent implements OnInit, OnDestroy {
-  favoriteProducts: Array<Product> = [];
-  favoriteProducts$: Observable<Array<Product>>;
+export class WishlistAnimationDetailsComponent implements OnInit, OnDestroy {
+  shown = true;
   s = new Subject();
   showProductFavorite = false;
   requestStatuses: typeof Status = Status;
-  domainStatusWishlistProducts: DomainStatus<Array<Product>>;
   domainStatusProducts: DomainStatus<Array<Product>>;
-
-  productsFavorite: Array<Product> = [];
+  domainStatusWishlistProducts: DomainStatus<Array<Product>>;
   hasError: boolean;
   subscriptions: Subscription[] = [];
 
   constructor(
-    private favoriteService: FavoriteService,
-    private cartService: CartService,
     private overlayRef: OverlayRef,
+    @Inject(WISHLIST_DISPOSE_NOTIFIER)
+    private notificationSubject: ReplaySubject<any>,
+    private favoriteService: FavoriteService,
     private wishlistServiceState: WishlistStateService,
     private productServiceState: ProductsStateService
   ) {}
 
+  closeWishlistOverlay(): void {
+    this.shown = false;
+  }
+
+  handleEvent(event: AnimationEvent): void {
+    if (event.toState === 'hidden') {
+      this.sendCloseNotification();
+    }
+  }
+
+  private sendCloseNotification(): void {
+    this.notificationSubject.next(true);
+    this.notificationSubject.complete();
+  }
+
   ngOnInit(): void {
+    this.loadWishlistProducts();
+
     this.subscriptions.push(
       this.wishlistServiceState.wishlistDomainStatus$.subscribe(
         (wishlistDomainStatus: DomainStatus<Array<Product>>) => {
           this.domainStatusWishlistProducts = wishlistDomainStatus;
         }
       )
-    );
-
-    this.favoriteProducts$ = this.favoriteService.favoriteProducts$.pipe(
-      tap((p) => (this.favoriteProducts = p))
     );
   }
 
@@ -89,25 +107,23 @@ export class ProductFavoriteDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  moveToWishlist(productToRemove: Product): void {
-    this.loadWishlistProducts();
-
+  moveToFavorite(productToRemove: Product) {
     this.wishlistServiceState
-      .addWishlistProductsAndHandleResponse(productToRemove)
+      .removeWishlistProductsAndHandleResponse(productToRemove.id)
       .pipe(take(1))
-      .subscribe((x) => {
+      .subscribe((x: any) => {
         if (!x) {
-          this.favoriteService.removeProductFromFavorite(productToRemove.id);
+          this.favoriteService.addProductToFavorite(productToRemove);
         }
+        this.loadAllProducts();
       });
   }
 
   removeProduct(productToRemove: Product): void {
-    this.favoriteService.removeProductFromFavorite(productToRemove.id);
-  }
-
-  removeAllExceptThis(item: Product): any {
-    this.cartService.removeAllExcept(item.id);
+    this.wishlistServiceState
+      .removeWishlistProductsAndHandleResponse(productToRemove.id)
+      .pipe(take(1))
+      .subscribe();
   }
 
   closeOverlay(): void {

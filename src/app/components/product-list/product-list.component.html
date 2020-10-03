@@ -1,23 +1,44 @@
 <div class="product-list">
-    <div *ngIf="domainStatusProducts && domainStatusProducts.domain && domainStatusProducts.domain.length"
-         ngClass.xs="product-list-xs"
-         ngClass.sm="product-list-sm"
-         ngClass.md="product-list-md"
-         ngClass.lg="product-list-lg"
-         ngClass.xl="product-list-lg"
-         fxLayout="row wrap">
-        <div class="product-list__container__item" *ngFor="let productTemplateRef of domainStatusProducts.domain">
-            <app-product-item (productAddedToFavorite)="handleProductAddedToFavorite($event)"
-                              [product]="productTemplateRef"></app-product-item>
-        </div>
+  <div
+    *ngIf="
+      domainStatusProducts &&
+      domainStatusProducts.domain &&
+      domainStatusProducts.domain.length
+    "
+    ngClass.xs="product-list-xs"
+    ngClass.sm="product-list-sm"
+    ngClass.md="product-list-md"
+    ngClass.lg="product-list-lg"
+    ngClass.xl="product-list-lg"
+    fxLayout="row wrap"
+  >
+    <div
+      class="product-list__container__item"
+      *ngFor="let productTemplateRef of domainStatusProducts.domain"
+    >
+      <app-product-item
+        (productAddedToFavorite)="handleProductAddedToFavorite($event)"
+        [product]="productTemplateRef"
+        [favoriteProducts]="favoriteProducts"
+        [wishlistProducts]="domainStatusWishlistProducts.domain"
+      >
+      </app-product-item>
     </div>
+  </div>
 
-    <ng-container *ngIf="this.domainStatusProducts.requestStatus.status === requestStatuses.FAILED">
-        <mat-error>{{domainStatusProducts.requestStatus.errorMessage}}</mat-error>
-        <button mat-raised-button color="accent" style="margin-top: 20px;width: 200px" (click)="loadProducts()">
-            Retry request
-        </button>
-    </ng-container>
+  <ng-container
+    *ngIf="
+      this.domainStatusProducts.requestStatus.status === requestStatuses.FAILED
+    "
+  >
+    <mat-error>{{ domainStatusProducts.requestStatus.errorMessage }}</mat-error>
+    <button
+      mat-raised-button
+      color="accent"
+      style="margin-top: 20px; width: 200px"
+      (click)="loadAllProducts()"
+    >
+      Retry request
+    </button>
+  </ng-container>
 </div>
-
-
